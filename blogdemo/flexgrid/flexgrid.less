@@ -1,0 +1,101 @@
+@screen-sm-min:768px;
+@screen-md-min:992px;
+@screen-lg-min:1200px;
+@flex-container-sm:750px;
+@flex-container-md:970px;
+@flex-container-lg:1170px;
+@grid-columns:12;
+
+*{
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+}
+
+
+.calc-grid-column(@index, @class, @type) when (@type = width) and (@index > 0) {
+  .col-@{class}-@{index} {
+  	flex: 0 0 percentage((@index / @grid-columns));
+  }
+}
+.calc-grid-column(@index, @class, @type) when (@type = offset) {
+  .col-@{class}-offset-@{index} {
+    margin-left: percentage((@index / @grid-columns));
+  }
+}
+.calc-grid-column(@index, @class, @type) when (@type = push) and (@index > 0) {
+  .col-@{class}-push-@{index} {
+    left: percentage((@index / @grid-columns));
+  }
+}
+.calc-grid-column(@index, @class, @type) when (@type = push) and (@index = 0) {
+  .col-@{class}-push-0 {
+    left: auto;
+  }
+}
+.calc-grid-column(@index, @class, @type) when (@type = pull) and (@index > 0) {
+  .col-@{class}-pull-@{index} {
+    right: percentage((@index / @grid-columns));
+  }
+}
+.calc-grid-column(@index, @class, @type) when (@type = pull) and (@index = 0) {
+  .col-@{class}-pull-0 {
+    right: auto;
+  }
+}
+
+
+.loop-grid-columns(@index,@class,@type) when (@index>=0){
+	.calc-grid-column(@index, @class, @type);
+	.loop-grid-columns((@index - 1), @class, @type);
+}
+
+.make-grid(@class){
+  .loop-grid-columns(@grid-columns, @class, width);
+  .loop-grid-columns(@grid-columns, @class, pull);
+  .loop-grid-columns(@grid-columns, @class, push);
+  .loop-grid-columns(@grid-columns, @class, offset);	
+}
+
+
+
+
+.flex-container-fixed(){
+	display:flex;
+	flex-flow:row wrap;
+	justify-content:flex-start;
+	align-items:stretch;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.flex-container{
+	.flex-container-fixed();
+	@media (min-width: @screen-sm-min) {
+		width: @flex-container-sm;
+	}
+	@media (min-width: @screen-md-min) {
+		width: @flex-container-md;
+	}
+	@media (min-width: @screen-lg-min) {
+		width: @flex-container-lg;
+	}	
+}
+
+.flex-container-fluid{
+	.flex-container-fixed();
+}
+
+.make-grid(xs);
+
+@media (min-width: @screen-sm-min) {
+  .make-grid(sm);
+}
+
+@media (min-width: @screen-md-min) {
+  .make-grid(md);
+}
+
+@media (min-width: @screen-lg-min) {
+  .make-grid(lg);
+}

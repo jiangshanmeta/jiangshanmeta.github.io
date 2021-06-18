@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>parallelogram</title>
+</head>
+<body>
+	<style>
+		.parallelogram{
+			position:relative;
+		}
+		.parallelogram::before{
+			content:'';
+			position:absolute;
+			top:0;
+			left:0;
+			right:0;
+			bottom:0;
+			-webkit-transform:skewX(-45deg);
+			transform:skewX(-45deg);
+			background-color:yellowgreen;
+			z-index: -1;
+		}
+	</style>
+	<div style="width:300px;height:200px;margin-left:auto;margin-right:auto;color:white;line-height:200px;font-size:25px;text-align:center;" class="parallelogram" id="para">
+		Content
+	</div>
+
+
+	<style>
+		.diamond{
+			position:relative;
+		}
+		.diamond::before{
+			content:'';
+			position:absolute;
+			top:0;
+			left:0;
+			right:0;
+			bottom:0;
+			-webkit-transform:rotate(-45deg);
+			transform:rotate(-45deg);
+			background-color:tan;
+			z-index: -1;
+		}
+	</style>
+	<div style="width:300px;height:300px;margin-left:auto;margin-right:auto;" class="diamond" id="diamond">
+		
+	</div>
+	<style>
+		.multi-bg{
+			position:relative;
+			background:url('../2.jpg') center center no-repeat;
+		}
+		.multi-bg::before{
+			content:'';
+			position:absolute;
+			top:0;
+			left:0;
+			right:0;
+			bottom:0;
+			z-index:-1;
+			background:url('../2.jpg') top left no-repeat;
+		}
+		.multi-bg::after{
+			content:'';
+			position:absolute;
+			top:0;
+			left:0;
+			right:0;
+			bottom:0;
+			z-index:-1;
+			background:url('../2.jpg') bottom right no-repeat;
+			opacity:0.5;
+		}
+	</style>
+	<div style="width:100%;height:500px;" class="multi-bg" id="multi">
+
+
+	</div>
+
+
+
+	<style>
+		.inner-radius{
+			position:relative;
+			background:tan;
+		}
+		.inner-radius::before{
+			content:'';
+			position:absolute;
+			top:10%;
+			left:10%;
+			right:10%;
+			bottom:10%;
+			background:yellowgreen;
+			border-radius:10px;
+		}
+
+	</style>
+	<div class="inner-radius" style="width:300px;height:200px;margin-left:auto;margin-right:auto;" id="inner">
+			content
+	</div>
+</body>
+</html>

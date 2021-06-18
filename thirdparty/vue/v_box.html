@@ -1,0 +1,292 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>v-box</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+		<style>
+			.center-table{
+				display:table;
+				margin-left:auto;
+				margin-right:auto;
+			}
+			.btn{
+				margin-top:5px;
+				margin-bottom:5px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="v_box" class="clearfix" style="margin-top:100px;">
+			<div class="center-table">
+				<div v-bind:style="computedStyle"></div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-9">
+						<div class="container">
+							<div class="row">
+								<div class="form-group col-6">
+									<label>width:{{width}}px</label>
+									<input class="form-control" type="number" v-model="width">
+								</div>
+								<div class="form-group col-6">
+									<label>height:{{height}}px</label>
+									<input class="form-control" type="number" v-model="height">
+								</div>
+								<div class="form-group col-6">
+									<label>border-radius:{{borderRadius}}%</label>
+									<input type="range" min="0" max="100" v-model="borderRadius" class="form-control">
+								</div>
+								<div class="form-group col-6">
+									<label>rotate:{{rotate}}deg</label>
+									<input v-model="rotate" type="range" class="form-control" min="-360" max="360">
+								</div>
+
+								<div class="form-group col-6">
+									<label>border-top-width:{{borderTopWidth}}px</label>
+									<input type="range" v-model="borderTopWidth" min="0" max="200">
+								</div>
+								<div class="form-group col-6">
+									<label>border-right-width:{{borderRightWidth}}px</label>
+									<input type="range" v-model="borderRightWidth" min="0" max="200">
+								</div>
+								<div class="form-group col-6">
+									<label>border-bottom-width:{{borderBottomWidth}}px</label>
+									<input type="range" v-model="borderBottomWidth" min="0" max="200">
+								</div>
+								<div class="form-group col-6">
+									<label>border-left-width:{{borderLeftWidth}}px</label>
+									<input type="range" v-model="borderLeftWidth" min="0" max="200">
+								</div>
+
+								<div class="form-group col-6">
+									<label>border-top-color:{{borderTopColor}}</label>
+									<input type="color" v-model="borderTopColor" class="form-control">
+								</div>
+								<div class="form-group col-6">
+									<label>border-right-color:{{borderRightColor}}</label>
+									<input type="color" v-model="borderRightColor" class="form-control">
+								</div>
+								<div class="form-group col-6">
+									<label>border-bottom-color:{{borderBottomColor}}</label>
+									<input type="color" v-model="borderBottomColor" class="form-control">
+								</div>
+								<div class="form-group col-6">
+									<label>border-left-color:{{borderLeftColor}}</label>
+									<input type="color" v-model="borderLeftColor" class="form-control">
+								</div>
+
+								<div class="form-group col-6">
+									<label>background:{{background}}</label>
+									<input type="color" class="form-control" v-model="background">
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+					<div class="col-3">
+						<button type="button" class="btn btn-primary" @click="useDefaultDate('triangleBottomRight')">triangleBottomRight</button>
+						<button type="button" class="btn btn-secondary" @click="useDefaultDate('triangleBottomLeft')">triangleBottomLeft</button>
+						<button type="button" class="btn btn-success" @click="useDefaultDate('triangleTopLeft')">triangleTopLeft</button>
+						<button type="button" class="btn btn-danger" @click="useDefaultDate('triangleTopRight')">triangleTopRight</button>
+						<button type="button" class="btn btn-warning" @click="useDefaultDate('trapezoid')">trapezoid</button>
+						<button type="button" class="btn btn-info" @click="useDefaultDate('arrowRight')">arrowRight</button>
+						<button type="button" class="btn btn-dark" @click="useDefaultDate('triangleRight')">triangleRight</button>
+						<button type="button" class="btn btn-light" @click="useDefaultDate('agree')">agree</button>
+
+
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<script>
+	        Vue.mixin({
+	            beforeCreate:function(){
+	                const options = this.$options;
+	                const config = options.config;
+	                if(config && typeof config === 'object'){
+	                    let keys = Object.keys(config);
+	                    keys.forEach((key)=>{
+	                        Object.defineProperty(this,key,{
+	                            value:config[key]
+	                        })
+	                    })
+	                }
+	            }
+	        })
+
+
+
+			new Vue({
+				el:"#v_box",
+				config:{
+					triangleBottomRight:{
+						width:0,
+						height:0,
+						rotate:0,
+						borderRadius:0,
+						borderTopWidth:0,
+						borderRightWidth:0,
+						borderBottomWidth:100,
+						borderLeftWidth:100,
+						borderTopColor:"#ff8c05",
+						borderRightColor:"#43a102",
+						borderBottomColor:"#c5da01",
+						borderLeftColor:"#ffffff"
+					},
+					triangleBottomLeft:{
+						width:0,
+						height:0,
+						rotate:0,
+						borderRadius:0,
+						borderTopWidth:0,
+						borderRightWidth:100,
+						borderBottomWidth:100,
+						borderLeftWidth:0,
+						borderTopColor:"#ff8c05",
+						borderRightColor:"#ffffff",
+						borderBottomColor:"#c5da01",
+						borderLeftColor:"#4499ee",
+					},
+					triangleTopLeft:{
+						width:0,
+						height:0,
+						rotate:0,
+						borderRadius:0,
+						borderTopWidth:100,
+						borderRightWidth:100,
+						borderBottomWidth:0,
+						borderLeftWidth:0,
+						borderTopColor:"#ff8c05",
+						borderRightColor:"#ffffff",
+						borderBottomColor:"#c5da01",
+						borderLeftColor:"#4499ee",					
+					},
+					triangleTopRight:{
+						width:0,
+						height:0,
+						rotate:0,
+						borderRadius:0,
+						borderTopWidth:100,
+						borderRightWidth:0,
+						borderBottomWidth:0,
+						borderLeftWidth:100,
+						borderTopColor:"#ff8c05",
+						borderRightColor:"#43a102",
+						borderBottomColor:"#c5da01",
+						borderLeftColor:"#ffffff",					
+					},
+					trapezoid:{
+						width:100,
+						height:0,
+						rotate:0,
+						borderRadius:0,
+						borderTopWidth:0,
+						borderRightWidth:50,
+						borderBottomWidth:100,
+						borderLeftWidth:50,
+						borderTopColor:"#ff8c05",
+						borderRightColor:"#ffffff",
+						borderBottomColor:"#c5da01",
+						borderLeftColor:"#ffffff",	
+					},
+					arrowRight:{
+						width:100,
+						height:100,
+						rotate:45,
+						borderRadius:0,
+						borderTopWidth:30,
+						borderRightWidth:30,
+						borderBottomWidth:0,
+						borderLeftWidth:0,
+						borderTopColor:"#ff8c05",
+						borderRightColor:"#43a102",
+						borderBottomColor:"#c5da01",
+						borderLeftColor:"#4499ee",	
+					},
+					triangleRight:{
+						width:0,
+						height:0,
+						rotate:0,
+						borderRadius:0,
+						borderTopWidth:100,
+						borderRightWidth:0,
+						borderBottomWidth:100,
+						borderLeftWidth:173,
+						borderTopColor:"#ffffff",
+						borderRightColor:"#43a102",
+						borderBottomColor:"#ffffff",
+						borderLeftColor:"#4499ee",	
+					},
+					agree:{
+						width:80,
+						height:150,
+						rotate:35,
+						borderRadius:0,
+						borderTopWidth:0,
+						borderRightWidth:20,
+						borderBottomWidth:20,
+						borderLeftWidth:0,
+						borderTopColor:"#ff8c05",
+						borderRightColor:"#43a102",
+						borderBottomColor:"#c5da01",
+						borderLeftColor:"#4499ee",	
+					}
+				},
+				data:{
+					width:0,
+					height:0,
+					borderRadius:50,
+					rotate:45,
+					background:"#ffffff",
+					borderTopWidth:200,
+					borderRightWidth:200,
+					borderBottomWidth:200,
+					borderLeftWidth:200,
+					borderTopColor:"#ff8c05",
+					borderRightColor:"#43a102",
+					borderBottomColor:"#c5da01",
+					borderLeftColor:"#4499ee",
+				},
+				computed:{
+					computedStyle:function(){
+						return {
+							width:this.width+"px",
+							height:this.height+"px",
+							background:this.background,
+							borderRadius:this.borderRadius+'%',
+							transform:'rotate('+this.rotate+'deg)',
+							borderStyle:"solid",
+							borderTopWidth:this.borderTopWidth+"px",
+							borderTopColor:this.borderTopColor,
+							borderRightWidth:this.borderRightWidth+"px",
+							borderRightColor:this.borderRightColor,
+							borderBottomWidth:this.borderBottomWidth+"px",
+							borderBottomColor:this.borderBottomColor,
+							borderLeftWidth:this.borderLeftWidth+"px",
+							borderLeftColor:this.borderLeftColor,
+							boxSizing:"content-box",
+						}
+					}
+				},
+				methods:{
+					useDefaultDate:function(type){
+						var data = this[type];
+						var keys = Object.keys(data);
+						keys.forEach(function(key){
+							this[key] = data[key]
+						}.bind(this))
+
+					}
+
+				}
+			})
+
+		</script>
+	</body>
+</html>

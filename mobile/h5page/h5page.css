@@ -1,0 +1,388 @@
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{
+	width:100%;
+	height:100%;
+	overflow:hidden;
+	font-size:14px;
+	font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", Heiti, "黑体", sans-serif;
+}
+/*  h5page-wrap h5page-unite h5page-seperate 加在同一个div上，后面两个类控制切换方式   */
+.h5page-wrap{
+	width:100%;
+	height:100%;
+	position:relative;
+}
+.h5page-widthFix{
+	max-width:640px;
+	margin-left:auto;
+	margin-right:auto;
+}
+.h5page-unite{
+	-webkit-transition:transform 0.8s cubic-bezier(.260,.860,.440,.985);
+	transition:transform 0.8s cubic-bezier(.260,.860,.440,.985);	
+}
+
+.h5page-unite .h5page{
+	display:block;
+	width:100%;
+	height:100%;
+	position:relative;
+}
+
+.h5page-seperate .h5page{
+	position:absolute;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	-webkit-transition:transform 0.8s cubic-bezier(.260,.860,.440,.985);
+	transition:transform 0.8s cubic-bezier(.260,.860,.440,.985);
+}
+.h5page-seperate .h5page-showing{
+	-webkit-transform:translate3d(0,0%,0);
+	transform:translate3d(0,0%,0);
+}
+.h5page-seperate .h5page-hasShown{
+	-webkit-transform:translate3d(0,-100%,0);
+	transform:translate3d(0,-100%,0);	
+}
+.h5page-seperate .h5page-notShow{
+	-webkit-transform:translate3d(0,100%,0);
+	transform:translate3d(0,100%,0);	
+}
+.h5page-threeD{
+	-webkit-transform-style:preserve-3d;
+	transform-style:preserve-3d;
+    -webkit-perspective: 900px;
+    perspective: 900px;
+}
+.h5page-threeD .h5page{
+	position:absolute;
+	top:0;
+	left:0;
+	bottom:0;
+	right:0;
+	-webkit-transform-origin: top center;
+	transform-origin: top center;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	-webkit-transition:all 0.8s cubic-bezier(.260,.860,.440,.985);
+	transition:all 0.8s cubic-bezier(.260,.860,.440,.985);
+}
+.h5page-threeD .h5page-notShow{
+  opacity: 1;
+  -webkit-transform: translate3d(0, 480px, 0) rotate3d(1, 0, 0, -90deg);
+  transform: translate3d(0, 480px, 0) rotate3d(1, 0, 0, -90deg);
+}
+.h5page-threeD .h5page-showing{
+  opacity:1;
+  -webkit-transform: rotate3d(1, 0, 0, 0deg);
+  transform: rotate3d(1, 0, 0, 0deg);
+}
+.h5page-threeD .h5page-hasShown{
+  opacity:0;
+  -webkit-transform: translate3d(0, 0, -220px) rotate3d(1, 0, 0, 90deg);
+  transform: translate3d(0, 0, -220px) rotate3d(1, 0, 0, 90deg);
+}
+.h5page-notMove .h5page{
+	position:absolute;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	-webkit-transition:transform 0.8s cubic-bezier(.260,.860,.440,.985);
+	transition:transform 0.8s cubic-bezier(.260,.860,.440,.985);	
+}
+.h5page-notMove .h5page-notShow{
+	-webkit-transform:translate3d(0,100%,0);
+	transform:translate3d(0,100%,0);
+}
+.h5page-notMove .h5page-showing{
+	-webkit-transform:translate3d(0,0%,0);
+	transform:translate3d(0,0%,0);
+}
+.h5page-unite2 .h5page{
+	position:absolute;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	-webkit-transition:transform 0.8s cubic-bezier(.260,.860,.440,.985);
+	transition:transform 0.8s cubic-bezier(.260,.860,.440,.985);
+}
+.h5page-unite2 .h5page-showing{
+	-webkit-transform:translate3d(0,0%,0);
+	transform:translate3d(0,0%,0);
+}
+.h5page-unite2 .h5page-hasShown{
+	-webkit-transform:translate3d(0,-100%,0);
+	transform:translate3d(0,-100%,0);	
+}
+.h5page-unite2 .h5page-notShow{
+	-webkit-transform:translate3d(0,100%,0);
+	transform:translate3d(0,100%,0);	
+}
+/* 为了以后写多个页面切换效果，将h5page-showing h5page-hasShown h5page-notShow 作为开关使用，具体的转换效果由其他的类处理 */
+
+	/* 珍爱生命，远离命名冲突，所以默默地加了一个命名空间 */
+.h5page.top{
+	z-index:9998;
+}
+/* 进度条样式  */
+.progress{
+	position:fixed;
+	width:100%;
+	left:0;
+	bottom:0;
+	height:3px;
+	background:rgba(0,0,0,.2);
+}
+.progress .progress-bar{
+	height:3px;
+	background-color:#08a1ef;
+	-webkit-transition:width 0.8s cubic-bezier(.260,.860,.440,.985);
+	transition:width 0.8s cubic-bezier(.260,.860,.440,.985);
+}
+
+
+/* 翻页提示箭头  */
+.arrow{
+	position:fixed;
+	z-index:9999;
+	width:10vw;
+	top:95vh;
+	left:45vw;
+}
+
+/* 以下为h5页面常用样式 */
+
+/* 基本布局 */
+.ab{
+	position:absolute;
+}
+.fixed{
+	position:fixed;
+}
+.pull-left{
+  float:left;
+}
+.pull-right{
+  float:right;
+}
+.clearfix:after{
+  content:'';
+  display:table;
+  clear:both;
+}
+.center-block{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}
+.block{
+	display:block;
+}
+.inline-block{
+	display:inline-block;
+}
+/* 注意 ，如果要加动画效果，下面两个类慎重使用，动画中会有各种transform  */
+.center-x{
+  position:absolute;
+  left:50%;
+  -webkit-transform:translateX(-50%);
+  transform:translateX(-50%);
+}
+.center-ab{
+	position:absolute;
+	top:50%;
+	left:50%;
+	-webkit-transform:translate(-50%,-50%);
+	-moz-transform:translate(-50%,-50%);
+	-ms-transform:translate(-50%,-50%);
+	-o-transform:translate(-50%,-50%);
+	transform:translate(-50%,-50%);
+}
+/* 图片 */
+.img-responsive{
+	display:block;
+	max-width:100%;
+	max-height:100%;
+}
+
+/*图形*/
+	/*自适应正方形*/
+.auto-square{
+	position:relative;
+}
+.auto-square::before{
+	content:'';
+	display:block;
+	padding-bottom:100%;
+}
+	/*自适应圆形*/
+.auto-circle{
+	border-radius:50%;
+	position:relative;
+}
+.auto-circle::after{
+	content:'';
+	display:block;
+	padding-bottom:100%;
+}
+
+	/*椭圆*/
+.ellipse{
+	border-radius:50%;
+}
+	/*半椭圆*/
+.half-ellipse-top{
+	border-radius:50%/100% 100% 0 0;
+}
+.half-ellipse-bottom{
+	border-radius:50%/0 0 100% 100%;
+}
+.half-ellipse-left{
+	border-radius:100% 0 0 100%/50%;
+}
+.half-ellipse-right{
+	border-radius:0 100% 100% 0 / 50%;
+}
+	/*四分之一椭圆*/
+.quarter-ellipse-topleft{
+	border-radius:100% 0 0 0;
+}
+.quarter-ellipse-topright{
+	border-radius:0 100% 0 0;
+}
+.quarter-ellipse-bottomright{
+	border-radius:0 0 100% 0;
+}
+.quarter-ellipse-bottomleft{
+	border-radius:0 0 0 100%;
+}
+	/*  菱形  */
+.diamond-clip{
+	-webkit-clip-path:polygon(50% 0, 100% 50%, 50% 100%,0 50%);
+	-moz-clip-path:polygon(50% 0, 100% 50%, 50% 100%,0 50%);
+	-o-clip-path:polygon(50% 0, 100% 50%, 50% 100%,0 50%);
+	-ms-clip-path:polygon(50% 0, 100% 50%, 50% 100%,0 50%);
+	clip-path:polygon(50% 0, 100% 50%, 50% 100%,0 50%);
+}
+
+/* 文本排版 */
+.text-center{
+  text-align:center;
+}
+.text-left{
+  text-align:left;
+}
+.text-right{
+  text-align:right;
+}
+
+/* 文本大小 */
+.text-xs{
+    font-size: 12px;
+}
+.text-sm{
+    font-size: 14px;
+}
+.text-md{
+    font-size: 16px;
+}
+.text-lg{
+  font-size: 18px;
+}
+.text-lead{
+	font-size:21px;
+}
+/* 文本样式  */
+.text-bold{
+    font-weight: bold;
+}
+.text-through{
+  text-decoration:line-through;
+}
+/* 文本颜色 */
+.text-warning {
+  color: #ff5722;
+}
+.text-primary {
+  color: #2196f3;
+}
+.text-danger {
+  color: #f44336;
+}
+.text-success {
+  color: #4caf50;
+}
+.text-info {
+  color: #03a9f4;
+}
+.text-grey {
+  color: #9e9e9e;
+}
+.text-darkgrey {
+  color: #333;
+}
+.text-white{
+  color:#fff;
+}
+
+
+/*  过渡 动画相关 */
+.transform-center{
+	-webkit-transform-origin:center center;
+	transform-origin:center center;
+}
+
+
+	/*弹幕动画*/
+@-webkit-keyframes barrage {
+  from {
+    transform:translate3d(0,0,0);  
+  }
+
+  to {
+    transform:translate3d(-100%,0,0);  
+  }
+}
+@keyframes barrage {
+  from {
+    transform:translate3d(0,0,0);    
+  }
+
+  to {
+    transform:translate3d(-100%,0,0);
+  }
+}
+.barrage{
+  -webkit-animation-name: barrage;
+  animation-name: barrage;
+  -weblit-animation-duration:5s; 
+  animation-duration: 5s;
+  -webkit-animation-timing-function:linear;
+  animation-timing-function:linear;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both; 
+}
+
+/* https://daneden.github.io/animate.css/  按钮变色那里 */
+@-webkit-keyframes hue{
+	from {
+		-webkit-filter:hue-rotate(0deg);
+	}
+	to {
+		-webkit-filter:hue-rotate(360deg);
+	}
+}
+@keyframes hue{
+	from{
+		-webkit-filter:hue-rotate(0deg);
+		filter:hue-rotate(0deg);
+	}
+	to{
+		-webkit-filter:hue-rotate(360deg);
+		filter:hue-rotate(360deg);
+	}
+}

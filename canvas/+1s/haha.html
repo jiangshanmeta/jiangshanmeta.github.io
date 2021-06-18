@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>+1s</title>
+  <style>
+    *{margin:0;padding:0;}
+	#canvas{width:500px;height:618px;display:block;margin:0 auto;}
+  </style>
+</head>
+<body>
+  <canvas id='canvas'>naive</canvas>
+  <script>
+    var canvas=document.getElementById('canvas');
+	canvas.width=500;
+	canvas.height=618;
+	var frog=new Image();
+	frog.src='haha.jpg';
+	var xuyimiao=[];
+	canvas.onclick=function(){
+	  var sec={y:230,opacity:1};
+	  xuyimiao.push(sec);
+	}
+	var context=canvas.getContext('2d');
+	setInterval(function(){
+	  showfrog(context);
+	  drawSeconds(context,xuyimiao);
+	  update(xuyimiao);
+	},16.7);
+	function showfrog(cxt){
+	  cxt.drawImage(frog,0,0);
+	
+	}
+	function drawSeconds(cxt,arr){
+	  for(var i=0;i<arr.length;i++){
+	    cxt.save();
+		cxt.fillStyle='rgba(255,0,0,'+arr[i].opacity+')';
+		cxt.font='30px arial';
+		cxt.textAlign='center';
+		cxt.textBaseline='middle';
+		cxt.fillText('+1 s',canvas.width/2,arr[i].y);
+		cxt.restore();
+	  }
+	}
+	function update(arr){
+	  for(var i=0;i<arr.length;i++){
+	    arr[i].y-=2;
+		arr[i].opacity-=0.008;
+		if(arr[i].opacity<0){
+		  arr.slice(i,1);
+		}
+	  }
+	}
+  </script>
+</body>
+</html>

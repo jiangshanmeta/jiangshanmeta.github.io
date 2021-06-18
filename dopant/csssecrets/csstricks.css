@@ -1,0 +1,112 @@
+body{}
+button{
+	padding:6px 16px;
+	border:1px solid #446d88;
+	background:#58a linear-gradient(hsla(0,0%,100%,0.2),transparent);
+	border-radius:4px;
+	box-shadow:0 1px 5px gray;
+	color:white;
+	text-shadow:0 -1px 1px rgba(0,0,0,0.5);
+	font-size: 20px;
+	line-height:1.5;
+}
+button.cancel{
+	background-color:#c00;
+}
+button.ok{
+	background-color:#6b0;
+}
+hr{
+	/* currentColor可以理解为继承下来的color值，这样就可以尽量少的改动了 */
+	background-color:currentColor;
+}
+
+/*透明边框*/
+.border{
+	background-color:red;
+	border:10px solid hsla(0,0%,100%,0.5);
+	/*想要透出大背景，所以小盒子的background-clip要设定为padding-box*/
+	background-clip:padding-box;
+}
+
+/*多重边框*/
+.multi-border1{
+	background:yellowgreen;
+	box-shadow: 0 0 0 10px #655;
+}
+.multi-border2{
+	background:yellowgreen;
+	box-shadow:0 0 0 10px #655,
+	0 0 0 15px deeppink,
+	0 2px 5px 15px rgba(0,0,0,0.6);
+	/*最后一行是最常规的box-shadow用法，15px的扩展半径，5px的模糊半径，y轴偏移2px*/
+}
+.multi-border3{
+	background:yellowgreen;
+	border:10px solid #655;
+	outline:5px dashed deeppink;
+	outline-offset:5px;
+}
+
+/*背景定位*/
+.bg-1{
+	background-color:#6998b2;
+	padding:20px;
+	width:80%;
+	min-height:500px;
+	background-image:url('2.jpg');
+	background-repeat:no-repeat;
+	/*background-position 的扩展语法，可以指定距离哪个边距离多少了，原来只能指定距离左上角的距离  */
+	background-position:right 20px bottom 10px;
+	/* background-origin 指定background-position参照的盒子，默认为padding-box */
+	background-origin:content-box;
+}
+
+/*边框内圆角*/
+.inner-radius{	
+	background:tan;
+	border-radius:10px;
+	padding:10px;
+	/*遇到圆角的时候，box-shadow会跟着圆角走，所以紧贴border，外边有圆角，outline不紧贴，所以会在outline和border的圆角之间留有空隙，但外侧是直角的。两者结合就可以形成边框内圆角。*/
+
+	box-shadow:0 0 0 15px #655;
+	outline:20px solid #655;
+}
+
+.tuoyuan{
+	border-radius:50%;
+}
+
+.half-ellipse-top{
+	border-radius:50%/100% 100% 0 0;
+}
+.half-ellipse-bottom{
+	border-radius:50%/0 0 100% 100%;
+}
+.half-ellipse-left{
+	border-radius:100% 0 0 100%/50%;
+}
+.half-ellipse-right{
+	border-radius:0 100% 100% 0 / 50%;
+}
+.quarter-ellipse-topleft{
+	border-radius:100% 0 0 0;
+}
+.quarter-ellipse-topright{
+	border-radius:0 100% 0 0;
+}
+.quarter-ellipse-bottomright{
+	border-radius:0 0 100% 0;
+}
+.quarter-ellipse-bottomleft{
+	border-radius:0 0 0 100%;
+}
+
+.diamond{
+	-webkit-transform:rotate(45deg);
+	transform:rotate(45deg);
+	overflow: hidden;
+}
+.diamond>img{
+	transform:rotate(-45deg) scale(1.42);
+}

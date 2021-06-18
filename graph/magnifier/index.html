@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8'>	
+  <title>图片放大镜效果</title>
+  <style>
+  	*{margin:0;padding:0;}
+  	#smallWrap{width:350px;height:350px;margin:50px;border:1px solid #ccc;position:relative;cursor:move;}
+  	#magnifier{width:175px;height:175px;position:absolute;background-color:rgba(133,133,0,0.2);}
+  	#bigWrap{width:400px;height:400px;background-image:url(big.jpg);position:absolute;left:450px;top:50px;border:1px solid #ccc;display:none;}
+  </style>
+</head>
+<body>
+  <div id='smallWrap'>
+    <img src='small.jpg'>
+  </div>
+  <div id='bigWrap'></div>
+  <script>
+  	window.onload=function(){
+  		var smallWrap=document.getElementById('smallWrap');
+  		var swWidth=smallWrap.clientWidth;
+  		var swHeight=smallWrap.clientHeight;
+  		var bigWrap=document.getElementById('bigWrap');
+  		var ratio=2;
+  		
+  		smallWrap.onmouseenter=function(event){
+  			var magnifier=document.createElement('div');
+  			magnifier.id='magnifier';
+  			smallWrap.appendChild(magnifier);		
+  			setPos(event);
+  		}
+  		smallWrap.onmousemove=function(event){
+  			setPos(event);
+  			
+  		}
+  		smallWrap.onmouseleave=function(){
+  			smallWrap.removeChild(magnifier);
+  			bigWrap.style.display='none';
+  		}
+
+  		function setPos(event){
+  			var width=magnifier.clientWidth;
+  			var height=magnifier.clientHeight;
+  			var pos=getPosInElem(event,smallWrap);
+  			var left=pos.x-width/2;
+  			var top=pos.y-height/2;
+  			if(left<0){left=0;}
+  			if(left+width>swWidth){left=swWidth-width;}			
+  			if(top<0){top=0;}
+  			if(top+height>swHeight){top=swHeight-height;}
+  			magnifier.style.left=left+'px';
+  			magnifier.style.top=top+'px';
+  			bigWrap.style.display='block';
+  			bigWrap.style.backgroundPosition=-left*ratio+'px'+' '+-top*ratio+'px';
+  		}
+
+
+
+  		function getPosInElem(event,elem){
+  			return {
+  				x:event.clientX-elem.getBoundingClientRect().left,
+  				y:event.clientY-elem.getBoundingClientRect().top
+  			}
+  		}
+
+  	}
+
+
+  </script>
+</body>
+<html>

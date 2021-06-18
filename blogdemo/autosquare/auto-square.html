@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1, user-scalable=no">
+	<title>自适应的正方形</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+			box-sizing:border-box;
+		}
+		.auto-square{
+			position:relative;
+		}
+		.auto-square::before{
+			content:'';
+			display:block;
+			padding-bottom:100%;
+		}
+		.center-ab{
+			position:absolute;
+			top:50%;
+			left:50%;
+			-webkit-transform:translate(-50%,-50%);
+			-moz-transform:translate(-50%,-50%);
+			-ms-transform:translate(-50%,-50%);
+			-o-transform:translate(-50%,-50%);
+			transform:translate(-50%,-50%);
+		}
+		.img-responsive{
+			display:block;
+			max-width:100%;
+			max-height:100%;
+		}
+		.one-third{
+			width:33.3333333%;
+		}
+		.pull-left{
+			float:left;
+		}
+		.clearfix::after{
+			content:'';
+			display:table;
+			clear:both;
+		}
+		.half{
+			width:50%;
+		}
+		.over-hidden{
+			overflow:hidden;
+		}
+		.fill-box{
+			position:absolute;
+			top:0;
+			left:0;
+			width:100%;
+			height:100%;
+		}
+		.contain{
+			-webkit-object-fit:contain;
+			object-fit:contain;
+		}
+		.cover{
+			-webkit-object-fit:cover;
+			object-fit:cover;
+		}
+		.fit-none{
+			-webkit-object-fit:none;
+			object-fit:none;
+		}
+	</style>
+</head>
+<body>
+	
+	<div style="width:90%;margin-left:auto;margin-right:auto;" class="clearfix">
+		<div class="auto-square one-third pull-left ">
+			<img src="../1.jpg" class="center-ab img-responsive">
+		</div>
+		<div class="auto-square  pull-left one-third">
+			<img src="../1.jpg" class="center-ab img-responsive">
+		</div>
+		<div class="auto-square  pull-left one-third">
+			<img src="../1.jpg" class="center-ab img-responsive">
+		</div>
+		<div class="auto-square  pull-left one-third">
+			<img src="../1.jpg" class="center-ab img-responsive">
+		</div>
+		<div class="auto-square  pull-left one-third">
+			<img src="../1.jpg" class="center-ab img-responsive">
+		</div>
+		<div class="auto-square  pull-left one-third">
+			<img src="../1.jpg" class="center-ab img-responsive">
+		</div>
+		<div class="auto-square  pull-left one-third">
+			<img src="../1.jpg" class="center-ab img-responsive">
+		</div>
+		<div class="auto-square  pull-left one-third">
+			<img src="../1.jpg" class="center-ab img-responsive">
+		</div>
+		<div class="auto-square  pull-left one-third">
+			<img src="../1.jpg" class="center-ab img-responsive">
+		</div>
+	</div>
+
+	<div style="margin-top:20px;padding:15px;">发现上面对图片采用自适应真的很难看，于是做了图片原样显示只是超出部分裁去的，发现这样好看多了</div>
+	<div style="width:90%;margin-left:auto;margin-right:auto;" class="clearfix">
+		<div class="auto-square half pull-left over-hidden">
+			<img src="../1.jpg" class="center-ab ">
+		</div>
+		<div class="auto-square  pull-left half over-hidden">
+			<img src="../1.jpg" class="center-ab ">
+		</div>
+		<div class="auto-square  pull-left half over-hidden">
+			<img src="../1.jpg" class="center-ab ">
+		</div>
+		<div class="auto-square  pull-left half over-hidden">
+			<img src="../1.jpg" class="center-ab ">
+		</div>
+		<div class="auto-square  pull-left half over-hidden">
+			<img src="../1.jpg" class="center-ab ">
+		</div>
+		<div class="auto-square  pull-left half over-hidden">
+			<img src="../1.jpg" class="center-ab ">
+		</div>
+		<div class="auto-square  pull-left half over-hidden">
+			<img src="../1.jpg" class="center-ab ">
+		</div>
+		<div class="auto-square  pull-left half over-hidden">
+			<img src="../1.jpg" class="center-ab ">
+		</div>
+		<div class="auto-square  pull-left half over-hidden">
+			<img src="../1.jpg" class="center-ab ">
+		</div>
+	</div>
+
+	<div style="margin-top:20px;padding:15px;">update 2016/07/18 于是我提高了一点知识水平，发现上面的两个实现可以通过object-fit实现。首先是图片水平垂直居中，图片尺寸等比缩放、容器包含图片</div>
+	<div style="width:90%;margin-left:auto;margin-right:auto;" class="clearfix">
+		<div class="auto-square one-third pull-left ">
+			<img src="../1.jpg" class="fill-box contain">
+		</div>
+		<div class="auto-square  pull-left one-third">
+			<img src="../1.jpg" class="fill-box contain">
+		</div>
+		<div class="auto-square  pull-left one-third">
+			<img src="../1.jpg" class="fill-box contain">
+		</div>
+		<div class="auto-square  pull-left one-third">
+			<img src="../1.jpg" class="fill-box contain">
+		</div>
+		<div class="auto-square  pull-left one-third">
+			<img src="../1.jpg" class="fill-box contain">
+		</div>
+		<div class="auto-square  pull-left one-third">
+			<img src="../1.jpg" class="fill-box contain">
+		</div>
+		<div class="auto-square  pull-left one-third">
+			<img src="../1.jpg" class="fill-box contain">
+		</div>
+		<div class="auto-square  pull-left one-third">
+			<img src="../1.jpg" class="fill-box contain">
+		</div>
+		<div class="auto-square  pull-left one-third">
+			<img src="../1.jpg" class="fill-box contain">
+		</div>
+	</div>
+
+	<div style="margin-top:20px;padding:15px;">图片水平垂直居中、等比缩放、图片覆盖容器</div>
+	<div style="width:90%;margin-left:auto;margin-right:auto;" class="clearfix">
+		<div class="auto-square half pull-left ">
+			<img src="../1.jpg" class="fill-box cover">
+		</div>
+		<div class="auto-square  pull-left half ">
+			<img src="../1.jpg" class="fill-box cover">
+		</div>
+		<div class="auto-square  pull-left half ">
+			<img src="../1.jpg" class="fill-box cover">
+		</div>
+		<div class="auto-square  pull-left half ">
+			<img src="../1.jpg" class="fill-box cover">
+		</div>
+		<div class="auto-square  pull-left half ">
+			<img src="../1.jpg" class="fill-box cover ">
+		</div>
+		<div class="auto-square  pull-left half ">
+			<img src="../1.jpg" class="fill-box cover ">
+		</div>
+		<div class="auto-square  pull-left half ">
+			<img src="../1.jpg" class="fill-box cover ">
+		</div>
+		<div class="auto-square  pull-left half ">
+			<img src="../1.jpg" class="fill-box cover ">
+		</div>
+		<div class="auto-square  pull-left half ">
+			<img src="../1.jpg" class="fill-box cover ">
+		</div>
+	</div>	
+
+
+	<div style="margin-top:20px;padding:15px;">图片水平垂直居中、等比缩放、原始尺寸</div>
+	<div style="width:90%;margin-left:auto;margin-right:auto;" class="clearfix">
+		<div class="auto-square half pull-left over-hidden">
+			<img src="../1.jpg" class="fill-box fit-none">
+		</div>
+		<div class="auto-square  pull-left half over-hidden">
+			<img src="../1.jpg" class="fill-box fit-none">
+		</div>
+		<div class="auto-square  pull-left half over-hidden">
+			<img src="../1.jpg" class="fill-box fit-none">
+		</div>
+		<div class="auto-square  pull-left half over-hidden">
+			<img src="../1.jpg" class="fill-box fit-none">
+		</div>
+		<div class="auto-square  pull-left half over-hidden">
+			<img src="../1.jpg" class="fill-box fit-none">
+		</div>
+		<div class="auto-square  pull-left half over-hidden">
+			<img src="../1.jpg" class="fill-box fit-none">
+		</div>
+		<div class="auto-square  pull-left half over-hidden">
+			<img src="../1.jpg" class="fill-box fit-none">
+		</div>
+		<div class="auto-square  pull-left half over-hidden">
+			<img src="../1.jpg" class="fill-box fit-none">
+		</div>
+		<div class="auto-square  pull-left half over-hidden">
+			<img src="../1.jpg" class="fill-box fit-none">
+		</div>
+	</div>
+
+
+	<div style="margin:20px 0;padding:15px;">
+		总结一下吧，这个页面本来是用来展示如何做一个自适应的正方形的，为了显得页面不那么简单就仿照微信的九宫格做了一个缩略图。然而对于这个缩略图做的操作反而略多。<br>
+		缩略图图片不要非等比伸缩，否则会很难看。在等比压缩的前提下尽可能居中，这也是基本需求。至于图片压缩比例就是另一个话题了。<br>
+		第一个实现的是如果图片长宽比大于1，水平最大100%，如果图片长宽比小于1，垂直最大100%。是通过max-width和max-height属性实现的。<br>
+		第二个实现的是图片按照原始大小展示，只是超出部分隐藏。这一点其实很好实现。<br>
+		第三个是利用 object-fit:contain来实现的，在这个例子中和第一个结果一致，但是其实略有差别，如果图片特别小，在第三种情况下会等比例放大，但是在第一种情况下会按照原始尺寸显示，换句话说，第一种情况和object-fit:scale-down表现一直。不过，都缩略图了，除非原图特别小。<br>
+		第四种情况利用object-fit:cover实现，表现上是图片内容占满整个图片区域。<br>
+		第五种情况和第二种情况表现上一致，都是图片按照原始尺寸显示、超出的不显示。<br>
+
+		其实吧利用对于图片的展示就应该用object-fit这个属性，毕竟是设计出来就干这个的。
+	</div>
+</body>
+</html>

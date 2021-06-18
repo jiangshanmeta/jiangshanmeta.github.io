@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1, user-scalable=no">
+	<title>imooc annul report</title>
+	<link rel="stylesheet" href="h5page.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+	<script src="h5page.js"></script>
+	<script src="https://cdn.bootcss.com/echarts/3.6.2/echarts.js"></script>
+	<style>
+		.common_bg{
+			background-color:#f4e5de;
+			background-image:url('img/halo.png');
+			background-position: center center;
+			background-repeat: no-repeat;
+		}
+	</style>
+</head>
+<body>
+	<div class="h5page-wrap h5page-threeD"  data-role="threeD">
+		<section class="h5page h5page-showing " style="background-color:#ffc665;">
+			<div style="background-image:url('img/halo.png');background-repeat:no-repeat;width:750px;height:750px;background-position:center 66%;position:absolute;margin-left:-375px;margin-top:-400px;left:50%;top:50%;-webkit-animation-duration:5s;animation-duration:5s;-webkit-animation-timing-function:linear;animation-timing-function:linear;" class=" animated infinite rotate transform-center"></div>
+			<img src="img/p1.png" style="position:absolute;width:100%;top:3%;">
+			<img src="img/p2.png" style="position:absolute;width:100%;bottom:0;">
+		</section>
+		<section class="h5page h5page-notShow text-center text-darkgrey text-lg common_bg" style="line-height:35px;padding-top:15px;">
+			<p style="">
+				<span class="text-bold text-danger"> 2015 </span> 年 
+				<span class="text-bold text-danger"> 07 </span> 月 
+				<span class="text-bold text-danger"> 08  </span> 日
+			</p>
+			<p>
+				你来到慕课网，
+			</p>
+			<p>
+				到今天，已经相识相知
+			</p>
+			<p>
+				<span class="text-bold text-danger"> 304 </span> 天 
+				<span class="text-bold text-danger"> 23 </span> 小时 
+				<span class="text-bold text-danger"> 33  </span> 分
+			</p>
+			<img src="img/p3.png" class="center-block" style="width:80%;">
+			<p class="text-bold text-danger">
+				这一年，
+			</p>
+			<p class="text-bold text-danger">
+				与大家共处的点点滴滴，
+			</p>
+			<p class="text-bold text-danger">
+				我都清晰的记着
+			</p>
+		</section>
+		<section class="h5page h5page-notShow text-center text-lg common_bg text-darkgrey" style="padding-top:20px;line-height:35px;">	
+			<p style="margin-bottom:15px;">
+				这一年，你在慕课网
+			</p>
+			<p>
+				参加了 <span class="text-bold text-danger"> 123 </span> 门课
+			</p>
+			<p>
+				参与了 <span class="text-bold text-danger"> 4 </span> 个学习计划
+			</p>
+			<p>
+				学习了 <span class="text-bold text-danger"> 326 </span>个小时
+			</p>
+
+
+			<img src="img/p4.png" class="ab block" style="width:100%;bottom:0;">
+		</section>
+		<section class="h5page h5page-notShow text-lg text-center common_bg text-darkgrey" style="padding-top:30px;line-height:40px;">
+			<p style="margin-bottom:20px;">
+				你总共
+			</p>
+			<p>
+				学了 <span class="text-bold text-danger "> 1778 </span>节课
+			</p>
+			<div id="classCount" style="width:100%;bottom:15%;height:60%;" class="ab "></div>
+			<script>
+				var classCountChart = echarts.init(document.getElementById("classCount"));
+				var classCountOpt = {
+				    tooltip : {
+				        trigger: 'item',
+				        formatter: "{a} <br/>{b} : {c} ({d}%)"
+				    },
+				    series : [
+				        {
+				            name: '课程结构',
+				            type: 'pie',
+				            radius : '55%',
+				            center: ['50%', '50%'],
+				            data:[
+				                {value:666, name:'视频'},
+				                {value:333, name:'练习'},
+				            ],
+				            itemStyle: {
+				                emphasis: {
+				                    shadowBlur: 10,
+				                    shadowOffsetX: 0,
+				                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+				                }
+				            }
+				        }
+				    ]					
+				}
+				classCountChart.setOption(classCountOpt);
+			</script>
+		</section>
+		<section class="h5page h5page-notShow text-lg text-center common_bg text-darkgrey" style="padding-top:20px;line-height:40px;">
+			<p style="margin-bottom:20px;">
+				你辛勤地
+			</p>
+			<p>
+				敲了 <span class="text-bold text-danger "> 1009 </span> 行代码
+			</p>
+			<p>
+				获得了 <span class="text-bold text-danger "> 32113 </span> 学习经验
+			</p>
+
+			<img src="img/p5.png" class="ab block" style="width:100%;bottom:0;">
+		</section>
+		<section class="h5page h5page-notShow text-lg text-center common_bg text-darkgrey" style="padding-top:20px;line-height:40px;">
+			<p>你的首选学习设备</p>
+			<div id="device" style="width:100%;bottom:15%;height:60%;" class="ab "></div>
+			<script>
+				var deviceChart = echarts.init(document.getElementById("device"));
+				var deviceOpt = {
+					    tooltip : {
+					        trigger: 'item',
+					        formatter: "{a} <br/>{b} : {c} ({d}%)"
+					    },
+					    legend: {
+					        orient: 'horizontal',
+					        left: 'center',
+					        top:'bottom',
+					        data: ['PC端','Android','iPad','iPhone']
+					    },
+					    series : [
+					        {
+					            name: '访问来源',
+					            type: 'pie',
+					            radius : '55%',
+					            center: ['50%', '50%'],
+					            data:[
+					                {value:92, name:'PC端'},
+					                {value:8, name:'Android'},
+					                {value:0, name:'iPad'},
+					                {value:0, name:'iPhone'},
+					            ],
+					            itemStyle: {
+					                emphasis: {
+					                    shadowBlur: 10,
+					                    shadowOffsetX: 0,
+					                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+					                }
+					            }
+					        }
+					    ]
+				}
+				deviceChart.setOption(deviceOpt);
+			</script>
+			<!-- canvas -->
+		</section>
+		<section class="h5page h5page-notShow text-lg text-center common_bg text-darkgrey" style="padding-top:25px;line-height:40px;">
+			<p>
+				最近几天
+			</p>
+			<p>
+				你学习到 深夜 <span class="text-bold text-danger"> 01 </span> 点
+			</p>
+			<p>
+				是睡着忘关网页了么...
+			</p>
+			<img src="img/p6.png" class="center-block" style="width:90%;margin-top:25px;margin-bottom:25px;" >
+			<p>
+				这是你今年第 <span class="text-bold text-danger"> 2 </span> 次为学习熬夜
+			</p>
+		</section>
+		<section class="h5page h5page-notShow text-lg text-center common_bg text-darkgrey" style="padding-top:20px;line-height:1.5;">
+			<p>
+				最长的一次，
+			</p>
+			<p>
+				你在慕课网连续学习了
+			</p>
+			<p style="margin-top:20px;">
+				<span class="text-bold text-danger"> 38 </span> 分钟
+			</p>
+			<img src="img/p7.png" class="center-block" style="width:90%;margin-top:25px;margin-bottom:25px;" >
+		</section>
+		<section class="h5page h5page-notShow text-lg text-center common_bg text-darkgrey" style="padding-top:20px;line-height:1.5;">
+			<p>
+				学习课程的同时，
+			</p>
+			<p>
+				你还
+			</p>
+			<p style="margin-top:20px;">
+				回复了 <span class="text-bold text-danger"> 1 </span> 条问题
+			</p>
+			<img src="img/p8.png" class="center-block" style="width:90%;margin-top:25px;margin-bottom:25px;" >
+		</section>
+		<section class="h5page h5page-notShow text-lg text-center common_bg text-darkgrey" style="padding-top:20px;line-height:1.5;">
+			<p>
+				予人玫瑰，手有余香，
+			</p>
+
+			<p style="margin-top:20px;">
+				你在慕课网结交了 <span class="text-bold text-danger"> 3 </span> 位好友
+			</p>
+			<p style="margin-top:20px;">
+				同他们共同 <span class="text-bold text-danger"> 探讨 </span> 一同 <span class="text-bold text-danger"> 进步 </span>
+			</p>
+			<img src="img/p9.png" class="center-block" style="width:90%;margin-top:25px;margin-bottom:25px;" >
+		</section>
+		<section class="h5page h5page-notShow text-lg text-center common_bg text-darkgrey" style="background-color:#ffc665;background-position:center 70%;padding-top:20px;">
+			<div onclick="h5Ins.top();">
+				<img src="img/up.png" class="center-block" style="width:6%;">
+				<span class="text-xs text-white">回到首页</span>
+			</div>
+			<div class="inline-block text-white  text-bold" style="padding:10px 20px;border:3px solid #090104;border-radius:4px;background-color:#f01400;margin-top:30px;font-size:30px;">
+				174437
+			</div>
+			<img src="img/zan.png" class="center-block " style="width:40%;margin-top:30px;margin-bottom:20px;">
+			<p class="text-bold text-lead">点赞慕课网</p>
+		</section>					
+	</div>
+	
+<!-- 	右侧导航栏 -->
+	<style>
+		.page-menu{
+			position:fixed;
+			right:10px;
+			top:50%;
+			-webkit-transform:translateY(-50%);
+			transform:translateY(-50%);
+			list-style:none;
+
+		}
+		.page-menu li{
+			width:10px;
+			height:10px;
+			margin-bottom:10px;
+			border-radius:50%;
+			background-color:rgba(132,128,123,0.3);
+			cursor:pointer;
+		}
+		.page-menu li.active{
+			background-color:rgba(132,128,123,1);
+		}
+		
+	</style>
+	<ul class="page-menu" id="rightNav">
+		<li class="active"></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	<style>
+		.barrageWrap{
+			padding:1px 10px 1px 1px;
+			background-color:#fd5849;
+			border-radius:10px;
+			height:22px;
+			white-space:nowrap;
+			display:table;
+		}
+
+		.barrageWrap .barragepic{
+			border-radius:50%;
+			width:20px;
+			height:20px;
+			margin-right:4px;
+		}
+
+		.barrageContainer{
+			position:fixed;
+			width:100%;
+			left:100%;
+		}
+
+	</style>
+	<!-- 弹幕 -->
+	<div >
+		<div class="barrageContainer  barrage infinite" style="bottom:10%;-webkit-animation-delay:2s;animation-delay:2s;">
+			<div  class ="barrage infinite barrageWrap clearfix" style="-webkit-animation-delay:2s;animation-delay:2s;">
+				<img src="img/user.jpg" class="barragepic pull-left">
+				<span class="pull-left text-white " >祝慕课网越办越好！</span>
+			</div>			
+		</div>
+
+		<div class="barrageContainer  barrage infinite" style="bottom:10%;-webkit-animation-delay:0s;animation-delay:0s;">
+			<div  class ="barrage infinite barrageWrap clearfix" style="-webkit-animation-delay:0s;animation-delay:0s;">
+				<img src="img/user2.jpg" class=" barragepic pull-left">
+				<div class="pull-left text-white " >喵喵喵，写代码的男孩子最可爱啦</div>
+			</div>			
+		</div>
+
+		<div class="barrageContainer  barrage infinite" style="bottom:5%;-webkit-animation-delay:3s;animation-delay:3s;">
+			<div  class ="barrage infinite barrageWrap clearfix" style="-webkit-animation-delay:3s;animation-delay:3s;">
+				<img src="img/user2.jpg" class=" barragepic pull-left">
+				<div class="pull-left text-white " >祝慕课网越办越好！</div>
+			</div>			
+		</div>
+
+		<div class="barrageContainer  barrage infinite" style="bottom:5%;-webkit-animation-delay:1s;animation-delay:1s;">
+			<div  class ="barrage infinite barrageWrap clearfix" style="-webkit-animation-delay:1s;animation-delay:1s;">
+				<img src="img/user.jpg" class=" barragepic pull-left">
+				<div class="pull-left text-white " >PHP是最好的编程语言</div>
+			</div>			
+		</div>
+
+	</div>	
+	<script>
+		var rightNav = document.getElementById("rightNav");
+		var menus = arrayify(rightNav.children);
+		var h5Ins = new H5page({
+			arrow:false,
+			init:function(pages){
+				h5pageDefaultCallbacks.twotogether.init(pages);
+				h5pageDefaultInit.threeD();
+			},
+			beforeLeave:function(cur,next,total,pages){
+				h5pageDefaultCallbacks.twotogether.beforeLeave(cur,next,total,pages);
+			},
+			afterLoad:function(cur,prev,total,pages){
+				menus[prev-1].classList.remove("active");
+				menus[cur-1].classList.add("active");
+				h5pageDefaultCallbacks.twotogether.afterLoad(cur,prev,total,pages);
+			}
+		});
+		h5Ins.init();
+
+		//绑定swipe
+		var swipePrevent = function(event){
+			event.preventDefault();
+		}
+		//这里之所以在touchmove阶段阻止默认事件而不是在touchstart是因为方便扩展，touchstart阻止了 一些事件如click就不会触发了
+		document.addEventListener("touchmove",swipePrevent,false);
+		myTouch.on(document,"swipeUp",h5Ins.next);
+		myTouch.on(document,"swipeDown",h5Ins.prev);
+
+		//利用事件代理绑定右侧导航栏
+		rightNav.addEventListener("click",function(event){
+			var index = menus.indexOf(event.target);
+			if(index == -1){
+				return;
+			}
+			h5Ins.goto(index+1);
+		},false);
+	</script>
+
+</body>
+</html>

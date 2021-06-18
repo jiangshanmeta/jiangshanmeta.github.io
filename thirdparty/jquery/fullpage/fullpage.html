@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<title>我的fullpage插件</title>
+		<link rel="stylesheet" href="fullpage.css">
+		<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.js"></script>
+		<script src="lib.js"></script>
+		<script src="myTouch.js"></script>
+		<script src="fullpage.js"></script>
+		<style>
+			*{font-family: Arial,Helvetica, 'Hiragino Sans GB',Tahoma, Arial, STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", Heiti, "黑体", sans-serif;font-size:16px;}
+			.section-bg{background-position:center center;background-repeat:no-repeat;}
+			.section-bg1{background-image:url(images/1.jpg);}
+			.section-bg2{background-image:url(images/2.jpg);}
+			.section-bg3{background-image:url(images/3.jpg);}
+			.section-bg4{background-image:url(images/4.jpg);}
+			.center-xy{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);-webkit-transform:translate(-50%,-50%);-moz-transform:translate(-50%,-50%);-o-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);}
+			.relative{position:relative;}
+			.text-center{text-align:center;}
+			.text-white{color:#fff;}
+			.text-yellow{color:#f1ff00;}
+			.head{font-size:96px;}
+			.para{font-size:40px;}
+			.center-table{display:table;margin-left:0;margin-right:0;}
+		</style>
+	</head>
+	<body>
+		<div id="fullpage" data-speed="1000"  data-navpos="right">
+			<section class="section section-bg section-bg1 relative active" >
+				<div class="center-xy">
+					<h1 class="text-center text-white head">Fullpage</h1>
+					<h2 class="text-center text-white para">Do you want a boyfriend?</h2>
+
+				</div>
+			</section>
+			<section class="section section-bg section-bg2 relative" >
+				<div class="center-xy">
+					<h1 class="text-center text-white head">Example</h1>
+					<p class="text-center text-yellow para">HTML markup example to define 4 sections</p>
+					<img src="images/code1.jpg" class="center-table" style="opacity:0.9">
+				</div>
+			</section>
+			<section class="section section-bg section-bg3 relative" >
+				<div class="center-xy">
+					<h1 class="text-center text-white head">Example</h1>
+					<p class="text-center text-yellow para">HTML markup example to define 4 sections</p>
+					<img src="images/code2.jpg" class="center-table" style="opacity:0.9">
+				</div>
+			</section>
+			<section class="section section-bg section-bg4 relative" >
+				<div class="center-xy">
+					<h1 class="text-center text-yellow head">Do you need a boyfriend?</h1>
+				</div>
+			</section>
+		</div>
+		<script>
+			$(document).ready(function(){
+
+				$("#fullpage").fullpage({
+					speed : 1000,
+					navigation : true,
+					navpos : "right",
+					navigationTooltips : ["page1","page2","page3","page4"],
+					continuous  : true,
+					keyboard : true,
+					mobile : true,
+					horizontal : true,
+					method : "swing",
+					onLeave : function(index){
+
+					},
+					afterLoad :function(index){
+						
+					}
+				});
+
+			})
+			console.log("contact 540118044@qq.com");
+
+		</script>
+	</body>
+</html>
+

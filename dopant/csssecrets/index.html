@@ -1,0 +1,453 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>CSS SSecrets</title>
+		<link rel="stylesheet" href="csstricks.css">
+		<script src="index.js"></script>
+	</head>
+	<body>
+		<div style="color:#0cc;">
+			1
+			<button>YES!</button>
+			<hr>
+			<button class="ok">OK</button>
+			<button class="cancel">Cancel</button>
+		</div>
+
+		<!-- 透明边框 -->
+		透明边框 
+		<div style="color:#cc0;background-color:#234567;padding:20px;margin-bottom:50px;">
+			
+			<div class="border" style="">
+				透明边框，基本原理就是rgba也是一种颜色，知识点知道，但是以前边框的颜色基本上是使用非透明色
+			</div>
+		</div>
+
+		<!-- 多重边框 -->
+		<div>
+			多重边框
+			<div class="multi-border1" style="width:200px;height:100px;margin-bottom:50px;">
+				然而，用box-shadow模仿一个边框真的是很无聊的想法
+			</div>
+			<div class="multi-border2" style="width:200px;height:100px;margin-bottom:50px;margin-left:200px;">
+				用box-shadow模仿多个边框有实际意义，更常规的方法是加一层div，简单粗暴但不够优雅，当然，不要忘了box-shadow不影响布局
+			</div>
+			<div class="multi-border3" style="width:400px;height:200px;margin-bottom:50px;margin-left:200px;">
+				使用outline模拟边框也是一个多重边框的解决方案，相较于box-shadow，其优点是可以制造出dashed dotted 的边框，而且了可以通过outline-offset控制模拟边框的位置，要实现中间有间隙的边框，box-shadow需要多写一行来模拟这一间隙。
+				outline的缺点是只能有一个outline，所以只能增加一个边框，outline-offset也不够灵活，只能设定一个距离，而box-shadow可以通过调节x轴偏移和y轴偏移来实现不同的偏移。
+				box-shadow或者outline的一个共同的优点是不影响布局，比套div好多了
+			</div>
+		</div>
+
+		<!-- 背景定位 -->
+		<div >
+			<div class="bg-1"></div>
+		</div>
+
+		<!-- 边框内圆角 -->
+		<div>
+			<div class="inner-radius" style="width:200px;margin-left:200px;">
+				遇到圆角的时候，box-shadow会跟着圆角走，所以紧贴border，外边有圆角，outline不紧贴，所以会在outline和border的圆角之间留有空隙，但外侧是直角的。两者结合就可以形成边框内圆角。最简单粗暴的方案是套一层div。这个方案一个缺点是outline的width不能太小，否则box-shadow为了填补空缺所需要的扩散半径会显得过大以至于外侧是圆角而不是直角
+			</div>
+		</div>
+
+		<!-- 自适应椭圆 -->
+		<div>
+			<div class="tuoyuan" style="width:800px;height:200px;margin-left:auto;margin-right:auto;background-color:yellowgreen;">
+
+			</div>
+
+			<div class="half-ellipse-top" style="width:800px;height:200px;margin-left:auto;margin-right:auto;background-color:yellowgreen;margin-top:10px;">
+
+			</div>
+			<div class="half-ellipse-bottom" style="width:800px;height:200px;margin-left:auto;margin-right:auto;background-color:yellowgreen;margin-top:10px;">
+
+			</div>
+			<div class="half-ellipse-left" style="width:800px;height:200px;margin-left:auto;margin-right:auto;background-color:yellowgreen;margin-top:10px;">
+
+			</div>
+			<div class="half-ellipse-right" style="width:800px;height:200px;margin-left:auto;margin-right:auto;background-color:yellowgreen;margin-top:10px;">
+
+			</div>
+			<div class="quarter-ellipse-topleft" style="width:800px;height:200px;margin-left:auto;margin-right:auto;background-color:yellowgreen;margin-top:10px;">
+
+			</div>
+			<div class="quarter-ellipse-topright" style="width:800px;height:200px;margin-left:auto;margin-right:auto;background-color:yellowgreen;margin-top:10px;">
+
+			</div>
+			<div class="quarter-ellipse-bottomright" style="width:800px;height:200px;margin-left:auto;margin-right:auto;background-color:yellowgreen;margin-top:10px;">
+
+			</div>
+			<div class="quarter-ellipse-bottomleft" style="width:800px;height:200px;margin-left:auto;margin-right:auto;background-color:yellowgreen;margin-top:10px;">
+
+			</div>			
+		</div>
+
+
+		<!-- 平行四边形 -->
+		<div>
+			<div style="margin-left:auto;margin-right:auto;width:300px;height:200px;background-color:tan;transform:skewX(-45deg)">
+				<div style="transform:skewX(45deg)">
+				content
+				</div>
+			</div>
+			<style>
+				.skewEle{
+					position:relative;
+				}
+				.skewEle::before{
+					content:'';
+					position:absolute;
+					top:0;
+					left:0;
+					right:0;
+					bottom:0;
+					background-color:tan;
+					transform:skewX(45deg);
+					z-index:-1;
+				}
+			</style>
+			<div style="margin-left:auto;margin-right:auto;width:300px;height:200px;" class="skewEle">
+				
+				content
+				
+			</div>
+			<style>
+				.lingxing{
+					width:256px;
+					height:256px;
+					position:absolute;
+
+				}
+				.lingxing::before{
+					content:'';
+					background: url('2.jpg') center center no-repeat;
+					position:absolute;
+					top:0;
+					left:0;
+					right:0;
+					bottom:0;
+					z-index:-1;
+					transform:rotate(45deg);
+				}
+			</style>
+			<div class="lingxing">
+				
+			</div>
+	</div>
+
+
+	<!-- 菱形图片 -->
+	<div>
+		<div class="diamond" style="width:256px;height:256px;margin-left:auto;margin-right:auto;">
+			<img src="2.jpg">
+
+		</div>
+		<style>
+			.clip{
+				-webkit-clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);
+				clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);
+				cursor:help;
+			}
+		</style>
+		<img src="2.jpg" class="clip">
+	</div>
+	
+	<style>
+		.expaqnd-area{
+			width:50px;
+			height:50px;
+			border-radius:50%;
+			margin-left:auto;
+			margin-right:auto;
+			background-color:#6998be;
+			cursor:pointer;
+			border:10px solid transparent;
+			background-clip:padding-box;
+			box-shadow: 0 0 0 1px rgba(0,0,0,0.3) inset;
+		}
+	</style>
+	<div style="" class="expaqnd-area"></div>
+	<style>
+		.expand-p{
+			width:50px;
+			height:50px;
+			border-radius:50%;
+			margin-left:auto;
+			margin-right:auto;
+			background-color:#6998be;
+			cursor:pointer;
+			position:relative;			
+		}
+		.expand-p::before{
+			content:'';
+			position:absolute;
+			top:-10px;
+			left:-10px;
+			right:-10px;
+			bottom:-10px;
+		}
+	</style>
+	<div class="expand-p"></div>
+	<style>
+		.responsive-parent{
+			max-width:300px;
+			max-width:min-content;
+			margin-left:auto;
+			margin-right:auto;
+			border:1px solid yellowgreen;
+			padding:10px;
+		}
+	</style>
+	<figure class="responsive-parent">
+		<img src="2.jpg">
+	</figure>
+
+	<figure style="display:table;padding:10px;margin-left:auto;margin-right:auto;border:1px solid yellowgreen;padding:10px;">
+		<img src="2.jpg">
+	</figure>
+	<style>
+		.selection{
+			background-color:#252525;
+			color:#252525;
+		}
+		.selection::selection{
+			color:#fff;
+		}
+	</style>
+	<div class="selection">
+		the selection word
+
+	</div>
+	<style>
+		.table{
+			table-layout:fixed;
+			width:100%;
+			border-collapse:collapse;
+		
+		}
+	</style>
+	<table class="table" style="margin-top:20px;">
+		<tr>
+			<td>
+				版权声明	阅读
+O'Reilly Media, Inc.介绍	阅读
+
+			</td>
+			<td>
+版权声明	阅读
+O'Reilly Media, Inc.介绍	阅读
+序	阅读
+前言	阅读
+第一部分　MongoDB介绍	
+第二部分　设计应用	
+第三部分　复制	
+第四部分　分片	
+第五部分　应用管理	
+第六部分　服务器管理	
+附录A　安装MongoDB	
+附录B　深入MongoDB
+			</td>
+		</tr>
+	</table>
+		<script>
+			console.log(testProperty("transition"));
+			console.log(testValue("transition","1"));
+		</script>
+
+	<style>
+		.tab{
+			position:relative;
+			display:inline-block;
+			padding:0.5em 1em 0.35em;
+			color:white;
+		}
+		.tab::before{
+			content:'';
+			position:absolute;
+			top:0;
+			left:0;
+			right:0;
+			bottom:0;
+			z-index:-1;
+			background:#58a;
+			transform:perspective(0.5em) rotateX(5deg) scaleY(1.3);
+			transform-origin:center bottom;
+		}
+
+		.nav>a{
+			position:relative;
+			display:inline-block;
+			padding:0.3em 1em 0;
+		}
+		.nav>a::before{
+			content:'';
+			position:absolute;
+			top:0;right:0;bottom:0;left:0;
+			z-index:-1;
+			background-color:#ccc;
+			background-image:linear-gradient(hsla(0,0%,100%,0.6),hsla(0,0%,100%,0));
+			border:1px solid rgba(0,0,0,0.4);
+			border-bottom:none;
+			border-radius:0.5em 0.5em 0 0;
+			box-shadow:0 0.15em white inset;
+			transform:perspective(0.5em) rotateX(5deg);
+			transform-origin:bottom left;
+		}
+	</style>
+	<div>
+		<div class="tab">
+			tab cont
+		</div>
+		<div class="nav">
+			<a>Home</a>
+			<a>project</a>
+			<a>about</a>
+		</div>
+	</div>
+	<style>
+		.bgtiaowen{
+			background-image:linear-gradient(#fb3 33%,#58a 0,#58a 66%,yellowgreen 0);
+			background-size:100% 45px;
+		}
+		.bgtiaowen2{
+			background-image:linear-gradient(90deg,#fb3 33%,#58a 0,#58a 66%,yellowgreen 0);
+			background-size:45px 100%;
+		}
+
+		.bgtiaowen3{
+			background-image:linear-gradient(45deg,#fb3 25%,#58a 0,#58a 50%,#fb3 0,#fb3 75%,   #58a 0);
+			background-size:42.4px 42.4px;
+		}	
+
+		.bgtiaowen4{
+			background-image:repeating-linear-gradient(180deg,#fb3 ,#fb3 15px,#58a 0,#58a 30px,yellowgreen 0,yellowgreen 45px);
+			
+		}	
+
+	</style>
+	条纹背景
+
+	水平
+	<div class="bgtiaowen" style="min-height:200px;">
+
+
+	</div>
+	垂直
+	<div class="bgtiaowen2" style="min-height:200px;">
+
+
+	</div>
+	
+	<div class="bgtiaowen3" style="min-height:200px;">
+
+
+	</div>
+	竟然还有一个repeating-linear-gradient，这个方法可以用来制作各种角度的条纹
+	<div class="bgtiaowen4" style="min-height:200px;">
+	</div>
+
+	网格
+	<style>
+		.net-bg{
+			width:200px;
+			height:200px;
+			margin-top:50px;
+
+			background:white;
+			background-image:linear-gradient(90deg ,rgba(200,0,0,0.5) 50%,rgba(0,0,0,0) 0),linear-gradient(rgba(200,0,0,0.5) 50%,rgba(0,0,0,0) 0);
+			background-size:30px 30px;
+
+		}
+
+		.net-bg2{
+			width:200px;
+			height:200px;
+			margin-top:50px;
+
+			background:#58a;
+			background-image:linear-gradient(white 1px,transparent 0),linear-gradient(90deg,white 1px,transparent 0);
+			background-size:30px 30px;
+			
+		}
+
+
+	</style>
+	<div class="net-bg"></div>
+	<div class="net-bg2"></div>
+	<style>
+		.polka1{
+			width:200px;
+			height:200px;
+			background-color:#655;
+			background-image:radial-gradient(tan 30%,transparent 0);
+			background-size:30px 30px;
+			margin-top:20px;
+		}
+		.polka2{
+			width:200px;
+			height:200px;
+			background-color:#655;
+			margin-top:20px;
+			background-image:radial-gradient(tan 30%,transparent 0),radial-gradient(tan 30%,transparent 0);
+			background-size:30px 30px;
+			background-position:0 0,15px 15px;
+			
+		}
+
+
+	</style>
+	<div class="polka1"></div>
+	<div class="polka2"></div>
+
+
+	<style>
+		.qipan{
+			width:400px;
+			height:400px;
+			margin-top:20px;
+			background-color:#eee;
+			background-image:linear-gradient(45deg,rgba(0,0,0,0.25) 25%,transparent 0,transparent 75%,rgba(0,0,0,0.25) 0),linear-gradient(45deg,rgba(0,0,0,0.25) 25%,transparent 0,transparent 75%,rgba(0,0,0,0.25) 0);
+			background-size:40px 40px;
+			background-position:0 0,20px 20px;
+		}
+
+	</style>
+
+	<div class="qipan"></div>
+	<style>
+		.border-image{
+			border-width:10px;
+			border-image:url(2.jpg) 10 repeat;
+		}
+	</style>
+	2123
+	<div style="width:500px;height:800px;" class="border-image"></div>
+	<style>
+	.pie{
+		width:400px;
+		height:400px;
+		border-radius:50%;
+		margin-top:50px;
+		margin-left:auto;
+		margin-right:auto;
+		color:yellowgreen;
+		background-color:currentColor;
+		
+		background-image:linear-gradient(90deg,transparent 50%,#655 0);
+	}
+	.pie::before{
+		content:'';
+		display:block;
+		margin-left:50%;
+		height:100%;
+		border-radius:0 100% 100% 0/50%;
+		background-color:currentColor;
+		transform-origin:left;
+
+	}
+	</style>
+	<div class="pie"></div>
+	</body>
+</html>

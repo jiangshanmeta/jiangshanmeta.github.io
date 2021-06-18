@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>图片轮播</title>
+  <style>
+    *{margin:0;padding:0;}
+    .main{width:980px;margin:100px auto;position:relative;height:210px;overflow:hidden;}
+    #imgwrap{width:99999px;overflow:hidden;position:absolute;top:0;left:0;}
+    #imgwrap>img{float:left;}
+    .main>span{display:block;width:40px;height:40px;position:absolute;top:50%;margin-top:-20px;font-weight:bold;text-align:center;font-size: 40px;line-height:40px;background:rgba(0,0,0,0.2);color:#fff;cursor:pointer;}
+    #prev{left:0;}
+    #next{right:0;}
+    #controls {width:100%;position:absolute;bottom:10px;left:0;text-align:center;}
+    #controls span{display:inline-block;margin-left:8px;width:10px;height:10px;border-radius:50%;background:rgba(33,33,33,0.3);}
+    #controls span.on{background:#fff;}
+  </style>
+</head>
+<body>
+<div class='main' >
+  <div id='imgwrap'>
+    <img src='img/1.jpg'>
+    <img src='img/2.png'>
+    <img src='img/3.jpg'>
+    <img src='img/4.png'>
+    <img src='img/5.jpg'>
+  </div>
+  <span id='prev'>&lt;</span>
+  <span id='next'>&gt;</span>
+  <div id='controls'><span class='on'></span><span></span><span></span><span></span><span></span></div>
+</div>
+<script>
+  window.onload=function(){
+    var imgwrap=document.getElementById('imgwrap');
+    var imgwidth=980;
+    imgwrap.innerHTML+=imgwrap.innerHTML;
+    
+    var imgnum=imgwrap.getElementsByTagName('img').length;
+    var index=0;
+    var prev=document.getElementById('prev');
+    var next=document.getElementById('next');
+    var slideDuration=500;
+    var slideInterval=20;
+    var stopDuration=3500;
+    var controls=document.getElementById('controls').getElementsByTagName('span');
+    var timer=setInterval(auto,stopDuration+slideDuration);
+    next.onclick=function(){
+    	index++;
+    	index=index%imgnum;
+    	changeControl();
+    	moveTo(imgwrap,-index*imgwidth,500,20);
+
+    }
+    prev.onclick=function(){
+    	index--;
+    	if(index===-1){
+    		index=imgnum/2-1;
+    		imgwrap.style.left=-imgwidth*imgnum/2+'px';
+    		
+    	}
+    	changeControl();
+    	moveTo(imgwrap,-index*imgwidth,slideDuration,slideInterval);
+
+    }
+    prev.onmouseover=function(){clearInterval(timer);}
+    next.onmouseover=function(){clearInterval(timer);}
+    prev.onmouseout=function(){timer=setInterval(auto,stopDuration+slideDuration);}
+    next.onmouseout=function(){timer=setInterval(auto,stopDuration+slideDuration);}
+
+    
+  
+
+
+    function auto(){
+    	index++;
+    	index=index%imgnum;
+    	changeControl();
+    	moveTo(imgwrap,-index*imgwidth,slideDuration,slideInterval);
+
+    }
+    function changeControl(){
+    	for(var i=0;i<controls.length;i++){
+    		controls[i].className='';
+    	}
+    	controls[index%(imgnum/2)].className='on';
+
+    }
+
+
+
+
+
+
+    function moveTo(elem,to,duration,interval){
+    	var currPos=parseInt(getStyle(elem,'left'));
+    	var dis=Math.abs(to-currPos);
+    	var symbol=(to-currPos)/dis;
+    	var stepLength=dis/(duration/interval);
+    	var tempIndex=index;
+    	var cover=0;
+    	var step=function(){
+    		if(tempIndex !==index){
+    			clearInterval(intervalId);
+    		}
+    		
+    		if(cover+stepLength<dis){
+    			elem.style.left=parseFloat(getStyle(elem,'left'))+symbol*stepLength+'px';
+    			cover+=stepLength;
+    		} else{
+    			elem.style.left=to+'px';
+    			clearInterval(intervalId);
+    			if(index===imgnum/2){index=0;elem.style.left='0px';}
+    		}
+
+    	}
+    	var intervalId=setInterval(step,interval);
+
+    }
+
+
+
+    function getStyle(elem,cssname){
+        if(window.getComputedStyle){
+        	return window.getComputedStyle(elem)[cssname];
+        }else{
+        	return elem.currentStyle[cssname];
+
+        }
+    }
+
+
+
+  }
+</script>
+</body>
+</html>

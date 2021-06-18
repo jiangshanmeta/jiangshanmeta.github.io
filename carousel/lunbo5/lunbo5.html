@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>旋转木马</title>
+	<style>
+	*{margin:0;padding:0;}
+	img{display:block;width:100%;height:100%;}
+	.poster-main{margin:50px auto;width:980px;height:280px;position:relative;}
+	.poster-list{list-style:none;position:relative;width:100%;height:240px;}
+
+	.poster-item{position:absolute;border-radius:8px;overflow:hidden;box-shadow:0 0 5px #ccc;}
+	.poster-item0{left:0;top:67px;z-index:1;width:240px;height:105px;}
+	.poster-item1{left:100px;top:42px;width:360px;height:157px;z-index:2;}
+	.poster-item2{top:0;left:215px;z-index:3;}
+	.poster-item3{top:42px;width:360px;height:157px;z-index:2;left:505px;}
+	.poster-item4{top:67px;width:240px;height:105px;z-index:1;left:740px;}
+	.poster-controls{text-align:center;position:absolute;width:100%;height:40px;bottom:0;left:0;line-height:40px;}
+	.poster-controls>span{display:inline-block;background-color:#666;width:15px;height:15px;border-radius:100%;cursor:pointer;z-index:1000;}
+	.poster-controls span+span{margin-left:8px;}
+	.poster-controls span.cur{background-color:orange;}
+	</style>
+</head>
+<body>
+<div class='poster-main' id='poster-main'>
+	<ul class='poster-list' id='poster-list'>
+		<li class='poster-item poster-item0'><a><img src='img/1.jpg'></a></li>
+		<li class='poster-item poster-item1'><a><img src='img/2.jpg'></a></li>
+		<li class='poster-item poster-item2'><a><img src='img/3.jpg'></a></li>
+		<li class='poster-item poster-item3'><a><img src='img/4.jpg'></a></li>
+		<li class='poster-item poster-item4'><a><img src='img/5.jpg'></a></li>
+	</ul>
+	<div class='poster-controls' id='poster-controls'><span></span><span></span><span class='cur'></span><span></span><span></span></div>
+</div>
+<script>
+function getStyle(elem,cssname){
+	if(window.getComputedStyle){
+		return window.getComputedStyle(elem)[cssname];
+	}else{
+		return elem.currentStyle[cssname];
+	}
+}
+window.onload=function(){
+  var posterList=document.getElementById('poster-list').getElementsByTagName('li');
+  var dots=document.getElementById('poster-controls').getElementsByTagName('span');
+  
+  var len=posterList.length;
+
+  var index=Math.floor(len/2);
+  
+  var arr=[];
+
+
+  //因为要改变的是z-index width height top left，把他们存储起来
+  for(var i=0;i<len;i++){
+  	arr.push({
+  		left:getStyle(posterList[i],'left'),
+  		top:getStyle(posterList[i],'top'),
+  		width:getStyle(posterList[i],'width'),
+  		height:getStyle(posterList[i],'height'),
+  		zIndex:getStyle(posterList[i],'zIndex')
+  	})
+  }
+
+  var timer=setInterval(function(){
+  		index++;
+  		index%=len;
+  		scroll(index);
+
+  },5000);
+
+  for(var i=0;i<len;i++){
+
+  	dots[i].index=i;
+  	dots[i].onmouseover=function(){
+  		clearInterval(timer);
+  		index=this.index;
+  		scroll(index);
+  	}
+  	dots[i].onmouseout=function(){
+  		timer=setInterval(function(){
+  			index++;
+  			index%=len;
+  			scroll(index);
+  		},5000)
+  	}
+  }
+
+
+  function scroll(num){
+  	changeDot(num);
+  	var newArr=center(arr.slice(0),index);
+  	for(var i=0;i<len;i++){
+  		posterList[i].style.zIndex=newArr[i].zIndex;
+  		act(posterList[i],newArr[i])
+  	}
+  }
+
+  function changeDot(num){
+  	for(var i=0;i<len;i++){
+  		dots[i].className='';
+  	}
+  	dots[num].className='cur';
+  }
+
+
+  function center(basicArr,index){
+  	var step=index-Math.floor(len/2);
+  	for(var i=0;i<Math.abs(step);i++){
+  		if(step<0){
+  			basicArr.push(basicArr.shift());
+  		}else{
+  			basicArr.unshift(basicArr.pop());
+  		}
+  	}
+  	return basicArr;
+
+  }
+
+//  根据新的样式表决定位置
+  function act(elem,elemStyles){
+  	if(elem.timer){clearInterval(elem.timer);}
+  	elem.timer=setInterval(function(){
+  		var stop=true;
+  		for(var p in elemStyles){
+
+  			var current=parseInt(getStyle(elem,p));
+  			var target=parseInt(elemStyles[p]);
+
+  			var speed=(target-current)/8;
+  			
+  			speed=speed>0?Math.ceil(speed):Math.floor(speed);
+  			if(current!=target){stop=false;}
+  			elem.style[p]=current+speed+'px';
+
+  		}
+  		if(stop){
+  			clearInterval(elem.timer);
+  		}
+
+
+
+  	},16.7)
+  }
+
+}
+</script>
+</body>
+</html>

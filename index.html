@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="description" content="北极 我的家  扬州 我的故乡">
+    <meta name="keywords" content="jsmeta jiangshan 姜山 前端 javascript html css js ">
+    <meta name="author" content="姜山 jsmeta ">
+    <meta name="robots" content="all">
+    <base target="_blank">
+    <link rel="shortcut icon" href="favicon.png" type="image/png" />
+    <link rel="manifest" href="manifest.json">
+    <title>jsmeta前端作品</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", Heiti, "黑体", sans-serif;
+        }
+        .main{
+            width:540px;
+            box-sizing:border-box;
+            padding:80px;
+            margin:20px auto;
+            border-radius:5px;
+            border:1px solid #ccc;
+            box-shadow:0 0 4px #ccc;
+        }
+
+        .according-list{
+            padding-left:30px;
+        }
+        .according-list a{
+            display:block;
+            font-size:22px;
+            line-height:2.7;   
+            color:#0a8cd2;
+            text-indent:20px;
+            border-radius:5px;
+            cursor:pointer;
+            text-decoration:none;
+            -webkit-transition:all 0.7s ease;
+            -moz-transition:all 0.7s ease;
+            -ms-transition:all 0.7s ease;
+            -o-transition:all 0.7s ease;
+            transition:all 0.7s ease;
+        }
+        .according-list a:hover{
+            color:#fff;
+            background:#56ad56;
+            text-indent:40px;
+        }
+
+
+        @media screen and (max-width:540px){
+            .main{
+                width:90%;
+                padding:40px;
+            }
+            .according-list a{
+                font-size:14px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <main class='main'>
+        <div class="according-list">
+            <a href='vue-admin/index.html'  >基于Vue的通用管理系统</a>
+            <a href='mineSweeper-vue/index.html'>扫雷 Vue实现</a>
+            <a href='minesweeper-react/index.html'>扫雷 React实现</a>
+            <a href='https://github.com/jiangshanmeta/meta'>LeetCode 题解</a>
+            <a href='https://github.com/jiangshanmeta/lintcode'>LintCode 题解</a>
+            <a href='https://jiangshanmeta.gitbooks.io/javascript-polyfill/content/'>javascript中的polyfill</a>
+            <a href='https://jiangshanmeta.gitbooks.io/vue_source_analysis/content/'>Vue源码解读</a>
+            <a href='https://jiangshanmeta.gitbooks.io/codeigniter_source_analysis/content/'>CI源码解读</a>
+            <a href='https://jiangshanmeta.gitbooks.io/underscore_source_analysis/content/'  >underscore源码解读</a>
+            <a href='https://github.com/jiangshanmeta/jiangshanmeta.github.io'  >博客</a>
+        </div>
+    </main>
+</body>
+</html>

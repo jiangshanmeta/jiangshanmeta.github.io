@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>图片轮播</title>
+  <style>
+    *{margin:0;padding:0;}
+    #main{width:850px;overflow:hidden;position:relative;height:150px;margin:100px auto;}
+    #imgwrap{overflow:hidden;width:99999px;position:absolute;top:0;left:0;}
+    #imgwrap>img{float:left;margin:0 10px;}
+    #main>span{position:absolute;top:50%;margin-top:-40px;background:rgba(0,0,0,0.2);width:30px;height:80px;text-align:center;line-height:80px;color:#fff;font-size:40px;cursor:pointer;}
+    #prev{left:0;}
+    #next{right:0;}
+  </style>
+</head>
+<body>
+<div id='main'>
+  <div id='imgwrap'>
+    <img src='img/1.jpg'>
+    <img src='img/2.jpg'>
+    <img src='img/3.jpg'>
+    <img src='img/4.jpg'>
+    <img src='img/5.jpg'>
+    <img src='img/21.jpg'>
+    <img src='img/22.jpg'>
+    <img src='img/23.jpg'>
+    <img src='img/24.jpg'>
+    <img src='img/25.jpg'>
+    <img src='img/1.jpg'>
+    <img src='img/2.jpg'>
+    <img src='img/3.jpg'>
+    <img src='img/4.jpg'>
+    <img src='img/5.jpg'>
+    <img src='img/21.jpg'>
+    <img src='img/22.jpg'>
+    <img src='img/23.jpg'>
+    <img src='img/24.jpg'>
+    <img src='img/25.jpg'>
+  </div>
+  <span id='prev'>&lt;</span>
+  <span id='next'>&gt;</span>
+</div>	
+<script>
+  function moveTo(elem,to,duration,interval){
+    var curr=parseFloat(getStyle(elem,'left'));
+    var dis=Math.abs(to-curr);
+    var symbol=(to-curr)/dis;
+    var stepLength=dis/(duration/interval);
+    var cover=0;
+    var step=function(){
+        if(cover+stepLength<dis){
+        	elem.style.left=parseFloat(getStyle(elem,'left'))+stepLength*symbol+'px';
+        	cover+=stepLength;
+        }else{
+        	elem.style.left=to+'px';
+        	clearInterval(intervalId);
+        }
+
+
+    }
+    var intervalId=setInterval(step,interval);
+
+  }
+
+
+
+
+  function getStyle(elem,cssname){
+     if(window.getComputedStyle){
+     	return window.getComputedStyle(elem)[cssname];
+     }else{
+     	return elem.currentStyle[cssname];
+     }
+
+
+  }
+  window.onload=function(){
+   
+    var imgwrap=document.getElementById('imgwrap');
+    var width=document.getElementById('main').clientWidth;
+    var page=4;
+    var index=0;
+    var moveduration=500;
+    var stopduration=3000;
+    var interval=20;
+    var prev=document.getElementById('prev');
+    var next=document.getElementById('next');
+    next.onclick=function(){
+    	index++;
+    	index=index%page;
+    	moveTo(imgwrap,-index*width,moveduration,interval);
+    }
+    prev.onclick=function(){
+    	index--;
+
+    	if(index===-1){index=page-1;}
+    	moveTo(imgwrap,-index*width,moveduration,interval);
+    }
+    main.onmouseover=function(){
+    	clearInterval(timer);
+    }
+    main.onmouseout=function(){
+    	timer=setInterval(auto,stopduration+moveduration);
+    }
+    var timer=setInterval(auto,stopduration+moveduration);
+    function auto(){
+    	index++;
+    	index=index%page;
+    	moveTo(imgwrap,-index*width,moveduration,interval);
+    }
+
+
+
+
+  }
+</script>
+</body>
+</html>

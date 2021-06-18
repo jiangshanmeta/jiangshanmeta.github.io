@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1, user-scalable=no">
+	<title>css clock</title>
+	<style>
+		@-webkit-keyframes rotate {
+		  from {
+		    -webkit-transform: rotate(0deg);
+		    transform: rotate(0deg);    
+		  }
+
+		  to {
+		    -webkit-transform: rotate(360deg);
+		    transform: rotate(360deg);  
+		  }
+		}
+		@keyframes rotate {
+		  from {
+		    -webkit-transform: rotate(0deg);
+		    transform: rotate(0deg);    
+		  }
+
+		  to {
+		    -webkit-transform: rotate(360deg);
+		    transform: rotate(360deg);  
+		  }
+		}
+
+		.clock-wrap{
+			width:300px;
+			height:300px;
+			border-radius:50%;
+			margin:auto;
+			background-color:#fff;
+			position:relative;
+		}
+		.pointer{
+			position:absolute;
+			width:100%;
+			height:100%;
+			top:0;
+			left:0;	
+		}
+		.pointer::before{
+			content:'';
+			display:block;
+			position:absolute;			
+			transform-origin:center bottom;
+			animation-iteration-count: infinite;
+			animation-timing-function:linear;
+			animation-fill-mode:both;
+			animation-name: rotate;			
+		}
+
+		.second::before{
+			width:4px;
+			height:45%;
+			top:5%;
+			left:calc(50% - 2px);
+			background-color:yellowgreen;
+			animation-duration:60s;
+		}
+		.minute::before{
+			width:8px;
+			height:38%;
+			top:12%;
+			left:calc(50% - 4px);
+			background-color:tan;
+			animation-duration:3600s;
+		}
+		.hour::before{
+			width:12px;
+			height:30%;
+			top:20%;
+			left:calc(50% - 6px);
+			background-color:purple;
+			animation-duration:43200s;
+		}
+
+
+
+
+	</style>
+</head>
+<body style="display:flex;background-color:#f1f1f1">
+	<div class="clock-wrap" id="clockwrap">
+		
+		<div class="second  pointer" id="second"></div>
+		<div class="minute  pointer" id="minute"></div>
+		<div class="hour  pointer" id="hour"></div>
+	</div>
+
+	<script>
+		function ucfirst (str) {
+		  str += ''
+		  var f = str.charAt(0)
+		    .toUpperCase()
+		  return f + str.substr(1)
+		}
+		//impress.js
+		var pfx = (function () {
+		    var style = document.createElement('dummy').style,
+		        prefixes = 'Webkit Moz O ms Khtml'.split(' '),
+		        memory = {};
+		    return function ( prop ) {
+		        if ( typeof memory[ prop ] === "undefined" ) {
+		            //实现一个ucfirst
+		            var ucProp  = ucfirst(prop),
+		            //拿到前缀化的属性名
+		                props   = (prop + ' ' + prefixes.join(ucProp + ' ') + ucProp).split(' ');
+		            
+		            memory[ prop ] = null;
+		            for ( var i in props ) {
+		                if ( style[ props[i] ] !== undefined ) {
+		                    memory[ prop ] = props[i];
+		                    break;
+		                }
+		            }
+		        }
+		        
+		        return memory[ prop ];
+		    };
+		})();
+
+		function cssclock(wrapId){
+			var time = new Date();
+			var h = time.getHours();
+			var m = time.getMinutes();
+			var s = time.getSeconds();
+			var sDOM = document.getElementById("second");
+			sDOM.style[pfx("transform")] = "rotate(" + 6*s + "deg)";
+			var mDOM = document.getElementById("minute");
+			mDOM.style[pfx("transform")] = "rotate(" + 6*m + "deg)";			
+			var hDOM = document.getElementById("hour");
+			hDOM.style[pfx("transform")] = "rotate(" + 30*(h%12) + "deg)";
+
+		}
+		cssclock("clockwrap")
+
+	</script>
+</body>
+</html>

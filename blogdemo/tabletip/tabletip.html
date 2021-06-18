@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1, user-scalable=no">
+	<title>图文混排</title>
+
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		html,body{
+			/*height:100%;*/
+		}
+		body{
+			display:flex;
+			flex-direction:column;
+			justify-content:center;
+			min-height:100vh;
+
+		}
+		.dtable{
+			display:table;
+		}
+		.dcell{
+			display:table-cell;
+			/*vertical-align:top;*/
+		}
+		.dblock{
+			display:block;
+		}
+		.dib{
+			display:inline-block;
+		}
+		.img-responsive{
+			max-width:100%;
+			height:auto;
+		}
+		.clearfix::after{
+			content:'';
+			display:table;
+			clear:both;
+		}
+		.pull-right{
+			float:right;
+		}
+	</style>
+</head>
+<body >
+
+	<div style="width:100%;table-layout:fixed;margin-bottom:20px;" class="dtable">
+		<div class="dcell" style="max-width:50%;">
+			<img src="../1.jpg" class=" img-responsive dblock" >
+		</div>
+		<div class="dcell" style="position:relative;">
+			<div class="clearfix">
+				默认情况下文字排版，我们希望文字底部和图片齐平，而不是第一行文字底部和图片齐平
+				
+			</div>
+		</div>
+	</div>
+
+	<div style="width:100%;table-layout:fixed;margin-bottom:20px;" class="dtable">
+		<div class="dcell" style="max-width:50%;vertical-align:top;">
+			<img src="../1.jpg" class=" img-responsive dblock" >
+		</div>
+		<div class="dcell" style="position:relative;vertical-align:top;">
+			<div class="clearfix">
+				上面
+				<div class="pull-right">右面</div>
+			</div>
+			<div style="position:absolute;bottom:5px;left:0;">想放在下面的东西</div>
+		</div>
+	</div>
+
+	<div style="width:100%;table-layout:fixed;margin-bottom:20px;" class="dtable">
+		<div class="dcell" style="max-width:50%;vertical-align:top;">
+			<img src="../1.jpg" class=" img-responsive dblock" >
+		</div>
+		<div class="dcell" style="position:relative;vertical-align:top;width:40%;">
+			<div class="clearfix">
+				中间来点东西
+				
+			</div>
+			<div style="position:absolute;bottom:5px;left:0;">下面来点东西</div>
+		</div>
+		<div class="dcell" style="vertical-align:middle;width:10%;font-size:40px;color:yellowgreen;font-weight:bold;">
+			>
+		</div>
+	</div>
+
+</body>
+</html>

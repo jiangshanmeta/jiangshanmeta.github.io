@@ -1,0 +1,85 @@
+/*自适应图片轮播*/
+@rel:relative;
+@blk:block;
+@abs:absolute;
+.circle(@bg-color:#fff;@width:10px;@border-width:1px;@border-color:#333;){
+    width:@width;
+    height:@width;
+    border-radius:50%;
+    background-color:@bg-color;
+    border:@border-width solid @border-color;
+}
+
+.centerY-abs(){
+    position:@abs;
+    top:50%;
+    -webkit-transform:translateY(-50%);
+    -moz-transform:translateY(-50%);
+    -o-transform:translateY(-50%);
+    -ms-transform:translateY(-50%);
+    transform:translateY(-50%);
+}
+.carousel-indicator(@bottom:10px;@margin-left:5px;){
+
+    position:absolute;
+    text-align:center;
+    bottom:@bottom;
+    width:100%;
+    .controls{
+         display:inline-block;
+         .circle;
+         &+&{
+            margin-left:@margin-left;
+        }
+        .active{
+          .circle(#ccc;);
+         }
+     }
+}
+
+
+.carousel-full-screen{
+    width:100%;
+    position:@rel;
+    overflow:hidden;
+    .carousel-imgswrap{
+        position:@rel;
+        width:99999px;
+        overflow:hidden;
+    }
+    .carousel-item{
+        float:left;
+
+        background-position:top center;
+        background-repeat:no-repeat;
+
+    }
+    img{width:100%;}
+     .carousel-indicator{
+        position:absolute;
+        text-align:center;
+        bottom:10px;
+        width:100%;
+        .controls{
+            display:inline-block;
+            cursor:pointer;
+            .circle;
+            .active{
+                .circle(#ccc;);
+            }
+        }
+        .controls+.controls{
+            margin-left:5px;
+        }
+    }
+       .prev,.next{
+        @height:40%;
+        .centerY-abs;
+        height:@height;
+        line-height:@height;
+        width:10%;
+        background:rgba(0,0,0,0.3);
+    }
+    .prev{left:0;}
+    .next{right:0;} 
+}

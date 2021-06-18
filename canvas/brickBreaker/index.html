@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>brick breaker</title>
+  <style> 
+    *{margin:0;padding:0;}
+	#canvas{display:block;margin:30px auto;}
+  </style>
+</head>
+<body>
+  <canvas id='canvas' width='320' height='400'>not support</canvas>
+  <script>
+    (function(){
+	  var canvas=document.getElementById('canvas');
+	  var context=canvas.getContext('2d');
+	  var end=true;
+	  var timer;
+	  var bricks=[];
+	  var colors=['#fe0000','#fef300','#6bc767','#53afe3'];
+	  var width=canvas.width;
+	  var height=canvas.height;
+	  var count=80;
+
+      var rule='空格开始 键盘左右键移动';
+	  var controls={
+					breaker:{x:154,y:370,width:12,height:12,color:'white',vx:3,vy:-2},
+					plate:{x:138,y:388,width:44,height:12,color:'white'}
+					};
+
+	  createbrick();
+	  draw();
+      drawText(rule);
+      document.onkeydown=function(event){
+	    event=event||window.event;
+	    var key=event.keyCode;
+	    if(end && key==32){
+		  end=false;
+          count=80;
+          controls.breaker={x:154,y:370,width:12,height:12,color:'white',vx:3,vy:-2};
+          for(var p in bricks){
+            bricks[p].hidden=false;
+           
+          }
+		  timer=setInterval(function(){
+		    context.clearRect(0,0,width,height);
+		    draw();
+			update();
+	
+		  },16.7)
+		}
+		if( (!end) && key==37){
+		  if(controls.plate.x<=20){
+		    controls.plate.x=0;
+		  }else{
+		    controls.plate.x=controls.plate.x-20
+		  }
+		  
+		}
+		if( (!end) && key==39){
+		  if(controls.plate.x>=width-controls.plate.width-20){
+		    controls.plate.x=width-controls.plate.width;
+		  }else{
+		    controls.plate.x=controls.plate.x+20;
+		  }
+		
+		}
+	  }
+      if(count==0){clearInterval(timer);drawText('WIN');}
+	  
+	  
+	  
+	  
+	  function createbrick(){
+		  for(var i=0;i<80;i++){
+			var brick={
+			  x:((i%10)*4+1)*8,
+			  y:parseInt(i/10)*20+8,
+			  width:24,
+			  height:12,
+			  color:colors[Math.floor(Math.random()*colors.length)],
+			  hidden:false
+			}
+			bricks.push(brick);
+		  }	  
+	  }
+	 function draw(){
+	    drawBackground();
+	    drawBrick();
+	    drawcontrols();
+	  }
+     function drawBrick(){
+	   for(var i=0;i<bricks.length;i++){
+	     if(!bricks[i].hidden){
+		   context.beginPath();
+		   context.fillStyle=bricks[i].color;
+		   context.moveTo(bricks[i].x,bricks[i].y);
+		   context.lineTo(bricks[i].x+bricks[i].width,bricks[i].y);
+		   context.lineTo(bricks[i].x+bricks[i].width,bricks[i].y+bricks[i].height);
+		   context.lineTo(bricks[i].x,bricks[i].y+bricks[i].height);
+		   context.closePath();
+		  
+		   if(context.isPointInPath(controls.breaker.x,controls.breaker.y) ||context.isPointInPath(controls.breaker.x+controls.breaker.width,controls.breaker.y) || context.isPointInPath(controls.breaker.x+controls.breaker.width,controls.breaker.y+controls.breaker.height)  ||context.isPointInPath(controls.breaker.x,controls.breaker.y+controls.breaker.height)){
+		     bricks[i].hidden=true;
+			 count--;
+			 controls.breaker.vx=-controls.breaker.vx;
+			 controls.breaker.vy=-controls.breaker.vy;
+			 continue;
+		   }
+		   context.fill();
+
+		 }
+ 
+	   }
+	 }
+	 
+	 function drawBackground(){
+	   context.beginPath();
+	   context.fillStyle='black';
+	   context.fillRect(0,0,width,height);
+	 }
+	 function drawcontrols(){
+        for(var p in controls){
+		   context.beginPath();
+	       context.fillStyle=controls[p].color;
+		   context.fillRect(controls[p].x,controls[p].y,controls[p].width,controls[p].height);
+		}
+	 }
+	 function drawText(str){
+	   context.beginPath();
+	   context.textAlign='center';
+	   context.textBaseline='middle';
+	   context.font='25px arial';
+	   context.fillText(str,width/2,height/2);
+}
+	function update(){
+      if(controls.breaker.y==height-controls.plate.height-controls.breaker.height && controls.breaker.x>=controls.plate.x-controls.breaker.width &&controls.breaker.x<=controls.plate.x+controls.plate.width){
+	    controls.breaker.vx=Math.pow(-1,Math.round(Math.random()))*Math.ceil(Math.random()*4);
+		controls.breaker.vy=-controls.breaker.vy;
+	  }
+	   controls.breaker.x+=controls.breaker.vx;
+	   controls.breaker.y+=controls.breaker.vy;
+	  if(controls.breaker.x<=0  ||controls.breaker.x+controls.breaker.width>=width){controls.breaker.vx=-controls.breaker.vx}
+	  if(controls.breaker.y<=0  ){controls.breaker.vy=-controls.breaker.vy}
+	  if(controls.breaker.y>=height){end=true;drawText('LOST');clearInterval(timer);}
+	}
+    
+	})()
+  
+  
+  </script>
+</body>
+</html>

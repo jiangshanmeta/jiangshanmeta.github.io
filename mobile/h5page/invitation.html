@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="h5page.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+		<style>
+			.bg{
+				width:100%;height:100%;background-position:50% 50%;background-size:cover;background-repeat:no-repeat;position:absolute;
+			}
+			.bg1{
+				background-image:url(img/bg1.jpg);
+			}
+			.bg2{
+				background-image:url(img/bg2.jpg);
+			}
+			.bg3{
+				background-image:url(img/bg3.jpg);
+			}
+			.bg4{
+				background-image:url(img/bg4.jpg);
+			}
+			.ab{
+				position:absolute;
+			}
+			.vis-hidden{
+				
+			}
+			.white-color{
+				color:white;
+			}
+			.text-lg{
+				font-size:20px;
+			}
+			.text-sm{
+				font-size:14px;
+			}
+			.transform-center{
+				transform-origin:center center;
+			}
+
+			#longPage.notShow{
+				-webkit-transform:translate3d(0,568px,0);
+				transform:translate3d(0,568px,0);
+			}
+			#longPage.showing{
+				-webkit-transform:translate3d(0,0,0);
+				transform:translate3d(0,0,0);
+			}
+			#longPage{
+				-webkit-transition:all 0.8s cubic-bezier(.260,.860,.440,.985);
+				transition:all 0.8s cubic-bezier(.260,.860,.440,.985);
+				z-index:9999999;
+				background:#fff;
+			}
+
+		</style>
+	</head>
+	<body class="">
+		<div class="h5page-wrap h5page-unite2"  data-role="unite2">
+			<section class="h5page h5page-showing "   >
+				<div class="bg bg1"></div>
+				<img src="img/pic1.png" style="width:96%;top:25%;left:2%;" class="ab " >
+				<img src="img/pic5.png" style="width:30%;top:5%;left:5%" class="ab" data-role="animation" data-method="fadeInDown 1.2s ease 0.3s both">
+				<img src="img/pic2.png" style="width:50%;top:54%;left:25%;" class="ab" data-role="animation" data-method="zoomHalf 0.8s linear 0.3s both">
+				<img src="img/pic3.png" style="width:100%;left:0%;top:80%;" class="ab"  data-role="animation"  data-method="fadeInUp 0.8s ease-in-out 1.1s both">
+				<img src="img/pic4.png" style="width:100%;left:0%;top:86%;" class="ab" data-role="animation" data-method="fadeInDown 0.8s ease-in-out 1.1s both">
+			</section>
+
+			<section class="h5page h5page-notShow "   >
+				<div class="bg bg2"></div>
+				<img src="img/pic5.png" style="width:25%;top:5%;left:5%" class="ab" data-role="animation" data-method="zoomIn 1.2s ease 0.3s both">
+				<div class="white-color text-lg ab" style="left:9%;top:22%;" data-role="animation" data-method="fadeInLeft 0.5s ease-in-out 1.5s both">爱的延续</div>
+				<div class="white-color text-sm ab" style="left:9%;top:27%;" data-role="animation" data-method="fadeInUp 0.5s ease-in-out 2.0s both">Love Again是一家充满爱的交友社区平台</div>
+				<div class="white-color text-sm ab" style="left:9%;top:31%;" data-role="animation" data-method="fadeInUp 0.5s ease-in-out 2.5s both">平台定期组织活动</div>
+				<div class="white-color text-sm ab" style="left:9%;top:35%;" data-role="animation" data-method="fadeInUp 0.5s ease-in-out 3.0s both">将有梦想有爱的年轻人组织在一起</div>
+				<div class="white-color text-sm ab" style="left:9%;top:39%;" data-role="animation" data-method="fadeInUp 0.5s ease-in-out 3.5s both">相亲交友，户外活动，运动健身，</div>
+				<div class="white-color text-sm ab" style="left:9%;top:43%;" data-role="animation" data-method="fadeInUp 0.5s ease-in-out 4.0s both">美容瑜伽以及培训创业，</div>
+				<div class="white-color text-sm ab" style="left:9%;top:47%;" data-role="animation" data-method="fadeInUp 0.5s ease-in-out 4.5s both">并定期做慈善公益活动</div>
+			</section>
+
+			<section class="h5page h5page-notShow "   >
+				<div class="bg bg3"></div>
+				<img src="img/pic6.png" class="ab" style="width:50%;left:11%;top:7%;" data-role="animation" data-method="fadeInDown 1.3s ease-in-out 0.3s both">
+				<img src="img/pic7.png" class="ab" style="width:50%;left:5%;top:13%;" data-role="animation" data-method="fadeInUp 1.3s ease-in-out 0.3s both">
+				<img src="img/pic8.png" class="ab" style="left:5%;top:23%;width:65%;" data-role="animation" data-method="fadeInRight 1.3s ease-in-out 1.6s both">
+				<img src="img/pic9.jpg" class="ab transform-center" style="transform:rotate(15deg);width:25%;top:10%;right:5%;" data-role="animation" data-method="zoomIn 0.9s ease-in-out 2.5s both">
+				<img src="img/pic10.jpg" class="ab transform-center" style="transform:rotate(-8deg);width:25%;top:28%;right:8%;" data-role="animation" data-method="zoomIn 0.9s ease-in-out 3.4s both">
+				<img src="img/pic11.jpg" class="ab transform-center" style="transform:rotate(9deg);width:35%;top:45%;right:25%;" data-role="animation" data-method="zoomIn 0.9s ease-in-out 4.3s both">
+				<img src="img/pic12.jpg" class="ab transform-center" style="transform:rotate(-10deg);width:25%;top:63%;right:7%;" data-role="animation" data-method="zoomIn 0.9s ease-in-out 5.2s both">
+			</section>
+			<section class="h5page h5page-notShow "   >
+				<div class="bg bg4"></div>
+				<img src="img/pic13.png" class="ab" style="width:15%;top:20%;right:4%;" data-role="animation" data-method="fadeInRight 1.1s ease-in-out 0.1s both">
+				<img src="img/pic14.png" class="ab" style="width:40%;top:8%;left:7%;" data-role="animation" data-method="fadeIn 1s ease-in-out 1.2s both">
+				<img src="img/pic15.png" class="ab" style="width:40%;top:32%;left:3%;" data-role="animation" data-method="zoomIn 1s ease-in-out 2.2s both">
+				<img src="img/pic16.png" class="ab" style="width:40%;top:50%;left:34%;" data-role="animation" data-method="flipInY 1s ease-in-out 3.2s both">
+				<img src="img/pic17.png" class="ab" style="width:40%;top:73%;left:5%;" data-role="animation" data-method="flipInX 1.1s ease-in-out 4.2s both">
+				<img src="img/pic18.png" class="ab" style="width:40%;top:73%;right:2%;" data-role="animation" data-method="flipInX 1.1s ease-in-out 4.2s both">
+			</section>
+		</div>
+<!-- 		<div class="progress">
+			<div class="progress-bar" style="width:0%;"></div>
+		</div> -->
+		<img class="arrow animated fadeOutUp infinite" src="img/arrow.png" id="arrow">
+
+		<div id="longPage" class="notShow" style="padding:15px;">
+			头说，要加一个需求<br>
+			需求是什么呢?<br>
+			这些展示型的页面，有的会很长<br>
+			有很多说明<br>
+			一个页写不开<br>
+			前面的页面展示完，这个长页就让用户自己拖吧<br>
+			于是，我便念了两句诗
+			<blockquote>
+				苟利国家生死以，岂因祸福避趋之
+			</blockquote>
+			然后，我便默默地写完了<br>
+			其中<br>
+			有不少问题<br>
+			我按照编程基本法解决了<br>
+			然而，这个页面还不够长<br>
+			就让我开始膜吧<br>
+			据说，在非洲，每过去一分钟，就过去了59秒<br>
+			跑得比谁都快<br>
+			将来报道出了偏差<br>
+			你们说吼不吼啊<br>
+			你们说，21世纪是生物的世纪吗？<br>
+			你们说，php是最好的编程语言吗<br>
+			要不要去交大朝圣一下呢<br>
+			要不要去扬州溜达溜达呢<br>
+			要不要吃晚饭呢<br>
+			晚饭吃什么呢<br>
+			选择障碍中<br>
+			要不要追那个女孩子呢<br>
+			闷声发大财<br>
+			一个人的命运呐<br>
+			当然要靠<span style="display:inline-block" class="animated flash infinite">个人奋斗</span><br>
+			还要考虑
+			<div class="text-center text-lg animated text-primary tada infinite">历史的进程</div>
+			然后，当我写完了，头说，这有个设计你可以抄，不用写之前的方案了。。。。。<br>
+			好像在大屏手机下也不够长<br>
+			不要在乎这些细节了喵
+		</div>
+
+		<script src="h5page.js"></script>
+		<script>
+			var longPageEle = document.getElementById("longPage"); 
+			var html = document.getElementsByTagName("html")[0];
+			var body = document.getElementsByTagName("body")[0];
+			var longPage = {
+				show:function(){
+					longPageEle.classList.remove("notShow");
+					longPageEle.classList.add("showing");
+					html.style.height = 'auto';
+					body.style.height = 'auto';
+					html.style.overflow = 'auto';
+					body.style.overflow = 'auto';
+					myTouch.off(document,"swipeUp",longPage.show);
+					document.removeEventListener("touchstart",swipePrevent,false);
+					longPageEle.addEventListener(whichTransitionEvent(),longPage.transitionEndEvent,false);
+				},
+				transitionEndEvent:function(){
+					document.querySelector(".h5page-wrap").style.display='none';
+				}
+			}
+
+			var h5Ins = new H5page({
+				arrow:false,
+				beforeLeave:function(cur,next,total,pages){
+					h5pageDefaultCallbacks.twotogether.beforeLeave(cur,next,total,pages);
+				},
+				afterLoad:function(cur,prev,total,pages){
+					if(total == cur){
+						myTouch.off(document,'swipeUp',h5Ins.next);
+						myTouch.on(document,'swipeUp',longPage.show);
+					}else{
+						myTouch.off(document,'swipeUp',longPage.show);
+						myTouch.on(document,'swipeUp',h5Ins.next);
+					}
+					h5pageDefaultCallbacks.twotogether.afterLoad(cur,prev,total,pages);
+				},
+			//	mode:'step',
+				init:function(pages){
+					var winH = getCSS(document.documentElement,"height");
+					var styleEle = document.createElement("style");
+					styleEle.innerHTML = "#longPage.notShow{ -webkit-transform: translate3d(0," + winH + ", 0); transform: translate3d(0, " + winH +", 0) ";
+					document.head.appendChild(styleEle);
+					h5pageDefaultCallbacks.twotogether.init(pages);
+				}
+			});
+			var swipePrevent = function(event){
+				event.preventDefault();
+			}
+			h5Ins.init();
+			
+			//这里在touchstart阶段就阻止了默认事件是因为需求中不需要再关联其他的事件如click tap之类的，所以为了性能考虑采用了touchstart
+			document.addEventListener("touchstart",swipePrevent,false);
+			myTouch.on(document,"swipeUp",h5Ins.next);
+			// myTouch.on(document,"swipeUp",function(e){
+			// 	console.log(e,this);
+			// });
+			myTouch.on(document,"swipeDown",h5Ins.prev);
+		</script>
+	</body>
+</html>

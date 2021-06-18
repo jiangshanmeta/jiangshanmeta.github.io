@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>比较两种通屏图片轮播</title>
+	<link href="css/full_screen.css" rel="stylesheet">
+	<style>
+	*{margin:0;padding:0;}
+		.bg .carousel-item{height:600px;}
+		.bg .carousel-item:nth-of-type(1){background-image:url(images/banner1.jpg);}
+		.bg .carousel-item:nth-of-type(2){background-image:url(images/banner2.jpg);}
+		.carousel-imgswrap{-webkit-transition:all 0.5s linear;
+											-moz-transition:all 0.5s linear;
+											-o-transition:all 0.5s linear;
+											-ms-transition:all 0.5s linear;
+											transition:all 0.5s linear;}
+	</style>
+	<script>
+/*		function getStyle(elem,cssname){
+			return window.getComputedStyle? window.getComputedStyle(elem)[cssname] || elem.currentStyle[cssname];
+		}*/
+		function fullScreenCarousel(id,interval){
+			var carouselbox=document.querySelector("#"+id);
+			var cWidth=document.documentElement.clientWidth || document.body.clientWidth;
+			var imgWrap=carouselbox.querySelector(".carousel-imgswrap");
+			var items=imgWrap.querySelectorAll(".carousel-item");
+			var imglen=items.length;
+			for(var i=imglen;i--;){
+				items[i].style.width=cWidth+"px";
+			}
+			var interval=interval || 3000;
+			var index=0;
+			var changepos=function(){
+				imgWrap.style.left=-index*cWidth+"px";
+				index=(index+1)%imglen;
+			}
+			var interval=setInterval(changepos,interval);
+		}
+	</script>
+</head>
+<body>
+
+	<h2>将图片作为背景实现通屏图片轮播</h2>
+	<div class="carousel-full-screen bg" id="bg_fullscreen">
+		<!--图片包裹区-->
+		<div class="carousel-imgswrap">
+			<div class="carousel-item"></div>
+			<div class="carousel-item"></div>
+		</div>
+
+		<!--控制点区-->
+		<div class="carousel-indicator">
+			<span class="controls active"></span><span class="controls"></span>
+		</div>
+		<span  class="prev">&lt;</span><span  class="next">&gt;</span>
+	</div>
+	<script>
+	(function(){
+		fullScreenCarousel("bg_fullscreen");
+	})();
+
+	</script>
+	<p>下面的控制点和左右两侧的控制点的功能没有实现。。因为类似的实现的多了。。样式神马的都是浮云。因为这里主要想实现的主要是通屏的轮播和利用css3的过渡实现轮播，至于其他功能，翻以前的代码去吧。顺便说一句，只是我第一次用less。虽然最终生成的样式确实比较丑。没有合适的设计稿。</p>
+
+	<h2>将图片以img标签的形式实现通屏图片轮播</h2>
+	<div class="carousel-full-screen" id="img_fullscreen">
+		<!--图片包裹区-->
+		<div class="carousel-imgswrap">
+			<div class="carousel-item"><img src="images/banner1.jpg"></div>
+			<div class="carousel-item"><img src="images/banner2.jpg"></div>
+		</div>
+
+		<!--控制点区-->
+		<div class="carousel-indicator">
+			<span class="controls active"></span><span class="controls"></span>
+		</div>
+		<span  class="prev">&lt;</span><span  class="next">&gt;</span>
+	</div>
+	<script>
+		(function(){
+		fullScreenCarousel("img_fullscreen");
+	})();
+
+
+	</script>
+	<p>  通屏的图片轮播也是很常见的图片轮播形式，一般显得很大气。据我所知主要有两类html实现方式，一类是把图片作为背景图，另一类是写img标签。</p>
+	<p>  把图片作为背景需要写死轮播区的高度，因为没有东西来撑开轮播区。一般重要的展示信息放在中心位置附近，所以使用background-position:top center并不会损失多少信息。
+	</p>
+	<p>
+		响应式图片的做法是设定图片宽度为100%；这样图片就会随着外面的盒子而改变尺寸，这样可以把图片完整展示出来，有时会有缩放。这种方式对于布局不是很友好。轮播区的高度是由图片决定的，但是一开始浏览器并不知道图片的高度是多少，后来会发生重排和重绘。
+	</p>
+	<p>我个人觉得还是作为背景处理比较好，因为在实际中这里主要是一些广告性质的区域，还会带有一些链接，重要的是链接而不是图片本身。而且作为背景不会导致重排，同时不压缩图片显得大气一些。</p>
+	<p>在具体的实现上，我这里还用了css3的过渡来实现轮播，毕竟能让css做的事情绝对不让js做。也许会带来一些兼容性问题。还有我最近突然想到中间的图片盒子可以使用相对定位而不是绝对定位，同样能控制left实现轮播，但是由于不脱离文档流因而轮播的最外层父盒子的尺寸就不必去写死了。</p>
+</body>
+</html>

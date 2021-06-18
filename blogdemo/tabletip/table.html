@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1, user-scalable=no">
+	<title>table</title>
+
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+
+		.bg-yellow{
+			background-color:#fcb913;
+		}
+		.bg-green{
+			background-color: #006a44;
+		}
+		.bg-red{
+			background-color:#c2272d;
+		}
+		.seperator{
+			margin-top:20px;
+			margin-bottom:20px;
+		}
+		.text-center{
+			text-align:center;
+		}
+	</style>
+</head>
+<body >
+
+<h2 class="text-center">行高度不限制，内容一致，三行等分高度</h2>
+<div style="display:table;height:600px;width:100%;">
+    <div style="display:table-row;" class="bg-yellow">1</div>
+    <div style="display:table-row;" class="bg-green">2</div>
+    <div style="display:table-row;" class="bg-red">3</div>
+</div>
+
+
+<div class="seperator"></div>
+
+<h2 class="text-center">行高度不限制，内容不一致，三行均分剩余高度</h2>
+<div style="display:table;height:600px;width:100%;">
+    <div style="display:table-row;" class="bg-yellow">1</div>
+    <div style="display:table-row;" class="bg-green">
+		<p>
+			我需要一段文字，一段很长的文字，长长长，大约8点20发的那一种我需要一段文字，一段很长的文字，长长长，大约8点20发的那一种
+		</p>
+		<p>
+			我需要一段文字，一段很长的文字，长长长，大约8点20发的那一种我需要一段文字，一段很长的文字，长长长，大约8点20发的那一种
+		</p>    	
+		<p>
+			我需要一段文字，一段很长的文字，长长长，大约8点20发的那一种我需要一段文字，一段很长的文字，长长长，大约8点20发的那一种
+		</p>
+		<p>
+			我需要一段文字，一段很长的文字，长长长，大约8点20发的那一种我需要一段文字，一段很长的文字，长长长，大约8点20发的那一种
+		</p> 
+    </div>
+    <div style="display:table-row;" class="bg-red">
+		<p>
+			我需要一段文字，一段很长的文字，长长长，大约8点20发的那一种我需要一段文字，一段很长的文字，长长长，大约8点20发的那一种
+		</p>     	
+    </div>
+</div>
+
+<div class="seperator"></div>
+
+<h2 class="text-center">行高度限制，内容不一致，限制的高度仅为参考高度</h2>
+<div style="display:table;height:600px;width:100%;">
+    <div style="display:table-row;height:10%;" class="bg-yellow">1</div>
+    <div style="display:table-row;height:10%;" class="bg-green">
+		<p>
+			我需要一段文字，一段很长的文字，长长长，大约8点20发的那一种我需要一段文字，一段很长的文字，长长长，大约8点20发的那一种
+		</p>
+		<p>
+			我需要一段文字，一段很长的文字，长长长，大约8点20发的那一种我需要一段文字，一段很长的文字，长长长，大约8点20发的那一种
+		</p>    	
+		<p>
+			我需要一段文字，一段很长的文字，长长长，大约8点20发的那一种我需要一段文字，一段很长的文字，长长长，大约8点20发的那一种
+		</p>
+		<p>
+			我需要一段文字，一段很长的文字，长长长，大约8点20发的那一种我需要一段文字，一段很长的文字，长长长，大约8点20发的那一种
+		</p> 
+    </div>
+    <div style="display:table-row;height:80%;" class="bg-red">
+		<p>
+			我需要一段文字，一段很长的文字，长长长，大约8点20发的那一种我需要一段文字，一段很长的文字，长长长，大约8点20发的那一种
+		</p>     	
+    </div>
+</div>
+</body>
+</html>

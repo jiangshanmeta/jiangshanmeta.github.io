@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1, user-scalable=no">
+	<title>sticky footer flex</title>
+
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		body{
+			display:flex;
+			flex-direction:column;
+			min-height:100vh;
+		}
+		#main{
+			flex-grow:1;
+		}
+		#header{
+			background-color:;
+		}
+		#header{
+			background-color:#fcb913;
+			height:150px;
+		}
+		#main{
+			background-color:#006a44;
+		}
+		#footer{
+			background-color:#c2272d;
+			height:200px;
+		}
+		.hidden{
+			display:none;
+		}
+		#btn{
+			position:absolute;
+			top:30px;
+			right:30px;
+			padding:8px 30px;
+			background-color:#03a9f4;
+			outline:none;
+			color:#fff;
+			cursor:pointer;
+			border-radius:4px;
+			border:none;
+		}
+	</style>
+</head>
+<body >
+	<header id="header">
+
+	</header >
+	<main id="main">
+		<div id="toggle" style="height:1500px;" class="hidden"></div>
+	</main>
+	<footer id="footer">
+		
+	</footer>
+	<button id="btn">toggle</button>
+	<script>
+		document.getElementById("btn").addEventListener("click",function(){
+			document.getElementById("toggle").classList.toggle("hidden");
+		})
+
+	</script>
+</body>
+</html>

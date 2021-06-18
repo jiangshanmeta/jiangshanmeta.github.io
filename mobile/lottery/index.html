@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1, user-scalable=no">
+	<title>抽奖</title>
+	<script src="../../common/lib.js" ></script>
+    <script src="../../common/widget.js" ></script>
+	<script src="lottery.js"></script>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+
+
+	</style>
+</head>
+<body style="display:flex;min-height:100vh;flex-direction:column;justify-content:center;">
+
+		<!-- <div id="lotteryWrap" ></div> -->
+
+		<script>
+			var lotteryIns =  Lottery({
+				lotteris:[
+					{bgColor:'#88adf6',text:'一等奖',textColor:'#ffff00',textPos:3/2},
+					{bgColor:'#95ce2a',text:'二等奖\n续二秒\n大新闻',textColor:'#ff00ff'},
+					{bgColor:'#ffeb4a',text:'三等奖\n续三秒',textColor:'#000000'},
+					{bgColor:'#ffa642',text:'四等奖\n续一秒'},
+					{bgColor:'#ff0891',text:'五等奖\n续一秒'},
+					{bgColor:'#88adf6',text:'六等奖\n续一秒'},
+					{bgColor:'#53e7ff',text:'七等奖\n续一秒'},
+					{bgColor:'#ff689f',text:'八等奖\n续一秒'}
+				],
+				DOM:{
+					// startDeg:-10,
+				},
+				ajaxUrl:'http://jiangshanmeta.github.io',
+				doSthAfterLottery:function(json){
+					alert(json.data.err.msg);
+				},
+				checkCanLottery:function(){
+					lotteryIns.errMsg = "12345";
+					return true;
+				},
+				doSthAfterAjaxError:function(json){
+			      alert(json.data.err.msg);			
+				},
+				doSthAfterCannotLottery:function(){
+					alert(lotteryIns.errMsg);
+				},
+			});
+		</script>
+</body>
+</html>

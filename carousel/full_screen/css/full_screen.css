@@ -1,0 +1,64 @@
+/*自适应图片轮播*/
+.carousel-full-screen {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.carousel-full-screen .carousel-imgswrap {
+  position: relative;
+  width: 99999px;
+  overflow: hidden;
+}
+.carousel-full-screen .carousel-item {
+  float: left;
+  background-position: top center;
+  background-repeat: no-repeat;
+}
+.carousel-full-screen img {
+  width: 100%;
+}
+.carousel-full-screen .carousel-indicator {
+  position: absolute;
+  text-align: center;
+  bottom: 10px;
+  width: 100%;
+}
+.carousel-full-screen .carousel-indicator .controls {
+  display: inline-block;
+  cursor: pointer;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 1px solid #333333;
+}
+.carousel-full-screen .carousel-indicator .controls .active {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #cccccc;
+  border: 1px solid #333333;
+}
+.carousel-full-screen .carousel-indicator .controls + .controls {
+  margin-left: 5px;
+}
+.carousel-full-screen .prev,
+.carousel-full-screen .next {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  height: 40%;
+  line-height: 40%;
+  width: 10%;
+  background: rgba(0, 0, 0, 0.3);
+}
+.carousel-full-screen .prev {
+  left: 0;
+}
+.carousel-full-screen .next {
+  right: 0;
+}

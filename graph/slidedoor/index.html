@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>滑动门</title>
+  <style>
+  #imgwrap{height:477px;border:1px solid #ccc;position:relative;overflow:hidden;}
+  #imgwrap img{position:absolute;left:0;top:0;display:block;border-left:1px solid #ccc;width:475px;}
+  </style>
+</head>
+<body>
+
+
+
+	<div id='imgwrap'>
+		<img src='door1.png'>
+		<img src='door2.png'>
+		<img src='door3.png'>
+		<img src='door4.png'>
+	</div>
+
+	<script>
+		var imgwrap=document.getElementById('imgwrap');
+		var imgs=imgwrap.getElementsByTagName('img');
+		var imgnum=imgs.length;
+		var imgWidth=imgs[0].clientWidth;
+		var exposeWidth=160;
+		var movedis=imgWidth-exposeWidth;
+		var duration=500;
+		var interval=20;
+		imgwrap.style.width=imgWidth+(imgnum-1)*exposeWidth+'px';
+		function setBasicPos(){
+			for(var i=1;i<imgnum;i++){
+				imgs[i].style.left=imgWidth+(i-1)*exposeWidth+'px';
+			}
+		}
+		setBasicPos();
+		for(var i=1;i<imgnum;i++){
+			imgs[i].onmouseover=(function(i){
+				return function(){
+					for(var j=1;j<imgnum;j++){
+						if(j<=i){
+							moveTo(imgs[j],imgWidth+(j-1)*exposeWidth-movedis,duration,interval);
+						}else{
+							moveTo(imgs[j],imgWidth+(j-1)*exposeWidth,duration,interval);
+						}				
+				    }			
+				}	
+			})(i)
+		}
+		
+		imgs[0].onmouseover=function(){
+			for(var i=1;i<imgnum;i++){
+				moveTo(imgs[i],imgWidth+(i-1)*exposeWidth,duration,interval);
+			}
+		}
+	function moveTo(elem,to,duration,interval){
+		if(elem.timer){clearInterval(elem.timer);}
+		var curr=parseFloat(getStyle(elem,'left'));
+		var dis=Math.abs(to-curr);
+		var symbol=(to-curr)/dis;
+		var cover=0;
+		var stepLength=dis/(duration/interval);
+		//alert(stepLength);
+		var step=function(){
+			if(cover+stepLength<dis){
+				elem.style.left=parseFloat(getStyle(elem,'left'))+stepLength*symbol+'px';
+				cover+=stepLength;
+			}else{
+				elem.style.left=to+'px';
+				clearInterval(elem.timer);
+			}
+
+		}
+		elem.timer=setInterval(step,interval);
+
+
+	}
+	function getStyle(elem,cssname){
+		if(window.getComputedStyle){
+			return window.getComputedStyle(elem)[cssname];
+		}else{
+			return elem.currentStyle[cssname];
+		}
+	}
+
+	</script>
+</body>
+</html>

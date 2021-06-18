@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>图片轮播</title>
+  <style>
+    *{margin:0;padding:0;}
+    #main{width:711px;height:342px;margin:54px auto;position:relative;}
+    #imgwrap{width:711px;height:342px;position:absolute;top:0;left:0;}
+    #imgwrap>img{position:absolute;top:0;left:0;opacity:0;}
+    #imgwrap>img:first-of-type{opacity:1;}
+
+    #controls{position:absolute;bottom:0;width:100%;height:30px;cursor:pointer;}
+    #controls>span{display:block;width:176px;height:100%;float:left;background:rgba(0,0,0,0.7);text-align:center;line-height:30px;font-size:16px;color:#fff;margin-right:1px;}
+    #controls>span.on{background:rgba(255,0,0,0.7);}
+  </style>
+</head>
+<body>
+<div id='main'>
+  <div id='imgwrap'>
+    <img src='img/1.jpg'>
+    <img src='img/2.jpg'>
+    <img src='img/3.jpg'>
+    <img src='img/4.jpg'>
+  </div>
+  <div id='controls'>
+    <span class='on'>聚蟹客 中秋好礼</span>
+    <span>赚网 相思惠明月</span>
+    <span>草莓网 彩妆大促</span>
+    <span>中秋送礼 浓情促销</span>
+  </div>
+  <script>
+  window.onload=function(){
+    var imgs=document.getElementsByTagName('img');
+    var imgnum=imgs.length;
+    var controls=document.getElementById('controls').getElementsByTagName('span');
+    var changeDuration=500;
+    var changeInterval=20;
+    var stopDuration=2500;
+    var index=0;
+   var timer=setInterval(auto,stopDuration+changeDuration);
+
+  for(var i=0;i<controls.length;i++){
+  	 controls[i].index=i;
+  	 controls[i].onclick=function(){
+  	 	index=this.index;
+  	 	index=index%imgnum
+  	 	fadeTo(index);
+  	 }
+  	 controls[i].onmouseover=function(){clearInterval(timer);}
+  	 controls[i].onmouseout=function(){timer=setInterval(auto,stopDuration+changeDuration);}
+
+  }
+
+
+
+
+  function auto(){
+    index++;
+    index=index%imgnum;
+    fadeTo(index);
+  }
+  function fadeTo(index){
+  	for(var i=0;i<imgnum;i++){
+  		controls[i].className='';
+  		fade(imgs[i],0,changeDuration,changeInterval);
+  		
+  	}
+  	controls[index].className='on';
+  	fade(imgs[index],1,changeDuration,changeInterval);
+  }
+
+ 
+  function fade(elem,to,duration,interval){
+  		if(elem.timer){clearInterval(elem.timer);}//因为有多张图片，每张图片都要设定定时器
+  		var curr=getStyle(elem,'opacity');
+  		var dis=Math.abs(to-curr);
+  		console.log(curr);
+  		console.log(dis);
+  		var symbol=(to-curr)/dis;
+
+  		var cover=0;
+  		var stepLength=dis/(duration/interval);
+  		console.log(stepLength);
+  		var step=function(){
+  			
+  			if(cover+stepLength<dis){
+  				elem.style.filter='alpha(opacity='+(curr+(cover+stepLength)*symbol)*100+')';
+  				elem.style.opacity=parseFloat(getStyle(elem,'opacity'))+stepLength*symbol;
+  				console.log(elem.style.opacity);
+  				cover+=stepLength;
+  			}else{
+  				elem.style.filter='alpha(opacity='+to*100+')'
+  				elem.style.opacity=to;
+  				clearInterval(elem.timer);
+  			}
+
+
+
+  		}
+
+  		elem.timer=setInterval(step,interval);
+
+
+  }
+
+
+    function getStyle(elem,cssname){
+    	if(window.getComputedStyle){
+    		return window.getComputedStyle(elem)[cssname];
+    	}else{
+    		return elem.currentStyle[cssname];
+    	}
+    }
+
+
+
+  }
+
+
+  </script>
+</div>
+</body>
+</html>

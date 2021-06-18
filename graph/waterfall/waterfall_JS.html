@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<title>瀑布流</title>
+		<style>
+			#main{position:relative;}
+			#main .box{padding:5px;float:left;}
+			#main .imgWrap{border:1px solid #ccc;box-shadow:0 0 5px #ccc;padding:5px;}
+			#main img{width:165px;}
+		</style>
+	</head>
+	<body>
+		<div id="main">
+			<div class="box">
+				<div class="imgWrap">
+					<img src="images/0.jpg">
+				</div>
+			</div>
+			<div class="box">
+				<div class="imgWrap">
+					<img src="images/1.jpg">
+				</div>
+			</div>
+			<div class="box">
+				<div class="imgWrap">
+					<img src="images/2.jpg">
+				</div>
+			</div>
+			<div class="box">
+				<div class="imgWrap">
+					<img src="images/3.jpg">
+				</div>
+			</div>
+			<div class="box">
+				<div class="imgWrap">
+					<img src="images/4.jpg">
+				</div>
+			</div>
+			<div class="box">
+				<div class="imgWrap">
+					<img src="images/5.jpg">
+				</div>
+			</div>
+			<div class="box">
+				<div class="imgWrap">
+					<img src="images/6.jpg">
+				</div>
+			</div>
+			<div class="box">
+				<div class="imgWrap">
+					<img src="images/7.jpg">
+				</div>
+			</div>
+			<div class="box">
+				<div class="imgWrap">
+					<img src="images/8.jpg">
+				</div>
+			</div>
+			<div class="box">
+				<div class="imgWrap">
+					<img src="images/9.jpg">
+				</div>
+			</div>
+			<div class="box">
+				<div class="imgWrap">
+					<img src="images/10.jpg">
+				</div>
+			</div>
+			<div class="box">
+				<div class="imgWrap">
+					<img src="images/11.jpg">
+				</div>
+			</div>
+			<div class="box">
+				<div class="imgWrap">
+					<img src="images/12.jpg">
+				</div>
+			</div>
+			<div class="box">
+				<div class="imgWrap">
+					<img src="images/13.jpg">
+				</div>
+			</div>
+			<div class="box">
+				<div class="imgWrap">
+					<img src="images/14.jpg">
+				</div>
+			</div>
+			<div class="box">
+				<div class="imgWrap">
+					<img src="images/15.jpg">
+				</div>
+			</div>
+			<div class="box">
+				<div class="imgWrap">
+					<img src="images/16.jpg">
+				</div>
+			</div>
+			<div class="box">
+				<div class="imgWrap">
+					<img src="images/17.jpg">
+				</div>
+			</div>
+			<div class="box">
+				<div class="imgWrap">
+					<img src="images/18.jpg">
+				</div>
+			</div>
+			<div class="box">
+				<div class="imgWrap">
+					<img src="images/19.jpg">
+				</div>
+			</div>
+			<div class="box">
+				<div class="imgWrap">
+					<img src="images/20.jpg">
+				</div>
+			</div>
+			<div class="box">
+				<div class="imgWrap">
+					<img src="images/21.jpg">
+				</div>
+			</div>
+			<div class="box">
+				<div class="imgWrap">
+					<img src="images/22.jpg">
+				</div>
+			</div>							
+		</div>
+		<script>
+			window.onload=function(){
+				waterfall("#main",".box");
+			}
+			function waterfall(parentSelector,childSelector){
+				var parent=document.querySelector(parentSelector);
+				var box=parent.querySelectorAll(childSelector);
+				var clientWidth=document.documentElement.clientWidth||document.body.clientWidth;
+				var boxWidth=box[0].offsetWidth;
+				var cols=Math.floor(clientWidth/boxWidth);
+				var height=[];
+				for(var i=0;i<cols;i++){
+					height.push(box[i].offsetHeight);
+				}
+				var boxLen=box.length;
+				for(var i=cols;i<boxLen;i++){
+					var index=height.indexOf(Math.min.apply(null,height));
+					var item=box[i];
+					box[i].style.cssText="position:absolute;"+"top:"+height[index]+"px;"+"left:"+index*boxWidth+"px";
+					height[index]+=box[i].offsetHeight;
+				}
+			}
+		</script>
+	</body>
+</html>

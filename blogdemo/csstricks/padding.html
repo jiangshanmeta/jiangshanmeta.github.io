@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>padding结合background-clip绘制图形</title>
+		<style>
+			*{
+				margin:0;
+				padding:0;
+			}
+			.icon-bars{
+				box-sizing:content-box;
+				width:22px;
+				height:2px;
+				padding:4px 0;
+				color:#888;
+				border-top:2px solid;
+				border-bottom:2px solid;
+				background-clip:content-box;
+				background-color:currentColor;
+			}
+
+			.icon-ring{
+				box-sizing:content-box;
+				width:20px;
+				border-radius:50%;
+				border:2px solid;
+				color:#888;
+				padding:4px;
+				background-clip:content-box;
+				background-color:currentColor;
+			}
+			.icon-ring::after{
+				content:'';
+				display:block;
+				padding-bottom:100%;
+			}
+			.auto-circle{
+				border-radius:50%;
+				position:relative;
+			}
+			.auto-circle::after{
+				content:'';
+				display:block;
+				padding-bottom:100%;
+			}
+		</style>
+
+	</head>
+	<body>
+		<div style="margin:20px auto;width:min-content;">
+			<div class="icon-bars"></div>
+		</div>
+		<div style="margin:20px auto;width:min-content;">
+			<div class="icon-ring"></div>
+		</div>
+		<div style="margin:20px auto;width:50px;">
+			<div class="auto-circle" style="background-color:yellowgreen;"></div>
+		</div>		
+	</body>
+
+</html>

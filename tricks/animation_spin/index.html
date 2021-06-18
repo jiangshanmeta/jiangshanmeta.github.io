@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1, user-scalable=no">
+		<title>一个旋转动画——不转不是中国人</title>
+		<style>
+			*{
+				margin:0;
+				padding:0;
+				box-sizing:border-box;
+			}
+			body{
+				font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", Heiti, "黑体", sans-serif;
+				font-size:21px;
+				display:flex;
+				min-height:100vh;
+				flex-direction:column;
+				justify-content:center;
+			}
+			.center-block{
+				margin-left: auto;
+				margin-right: auto;
+			}
+			.path{
+				background-color:#fb3;
+				width:280px;
+				height:280px;
+				position:relative;
+				/* 这里采取box-shadow模拟padding是因为如果采用padding，每个字的margin计算的时候要考虑padding，一旦padding改了margin也要改，由于预设了box-sizing：border-box，动画中的translate也会受影响  */
+				box-shadow:0 0 0 20px #fb3;
+			}
+			.circle{
+				border-radius:50%;
+			}
+			.wenzi{
+				width:40px;
+				height:40px;
+				line-height:40px;
+				text-align:center;
+				background-color:yellowgreen;
+				/* 绝对定位后是基于border-box定位的 */
+				margin:calc(50% - 20px) 0 0 calc(50% - 20px) ;
+				position:absolute;
+				color:#fff;
+				font-weight:bold;
+			}
+			@-webkit-keyframes spin{
+				from{
+					-webkit-transform:rotate(0deg) translateY(-140px) translateY(50%) rotate(360deg) ;
+				}
+				to{
+					-webkit-transform:rotate(360deg) translateY(-140px) translateY(50%) rotate(0deg);
+				}				
+			}
+
+
+			@keyframes spin{
+				from{
+					transform:rotate(0deg) translateY(-140px) translateY(50%) rotate(360deg) ;
+				}
+				to{
+					transform:rotate(360deg) translateY(-140px) translateY(50%) rotate(0deg);
+				}
+			}
+			.spin{
+				-webkit-animation:spin 8s linear infinite both;
+				animation:spin 8s linear infinite both ;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="path circle center-block">
+			<div class="circle wenzi spin" style="-webkit-animation-delay:-7s;animation-delay:-7s;">不</div>
+			<div class="circle wenzi spin" style="-webkit-animation-delay:-6s;animation-delay:-6s">转</div>
+			<div class="circle wenzi spin" style="-webkit-animation-delay:-5s;animation-delay:-5s">不</div>
+			<div class="circle wenzi spin" style="-webkit-animation-delay:-4s;animation-delay:-4s">是</div>
+			<div class="circle wenzi spin" style="-webkit-animation-delay:-3s;animation-delay:-3s">中</div>
+			<div class="circle wenzi spin" style="-webkit-animation-delay:-2s;animation-delay:-2s">国</div>
+			<div class="circle wenzi spin" style="-webkit-animation-delay:-1s;animation-delay:-1s">人</div>
+			<div class="circle wenzi spin" style="-webkit-animation-delay:0s;animation-delay:0s">！</div>
+		</div>
+
+	</body>
+</html>

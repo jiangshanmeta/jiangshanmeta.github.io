@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>图片轮播</title>
+  <style>
+    *{margin:0;padding:0;}
+    .main{margin:20px auto;width:1224px;height:630px;position:relative;overflow:hidden;}
+    #imgwrap{position:absolute;top:0;left:0;width:99999px;height:500px;}
+    #imgwrap>img{float:left;}
+    
+    .navswrap{position:absolute;bottom:0;left:0;width:1224px;height:167px;cursor:pointer;}
+    .nav{float:left;width:204px;height:167px;}
+    .navpic{width:204px;height:162px;background-position:right center;}
+    .nav0 .navpic{background-image:url(img/sbanner_00.png);}
+    .nav1 .navpic{background-image:url(img/sbanner_01.png);}
+    .nav2 .navpic{background-image:url(img/sbanner_02.png);}
+    .nav3 .navpic{background-image:url(img/sbanner_03.png);}
+    .nav4 .navpic{background-image:url(img/sbanner_04.png);}
+    .nav5 .navpic{background-image:url(img/sbanner_05.png);}
+    
+    .prowrap{width:204px;height:5px;}
+    .pro{height:5px;width:0px;}
+    .nav0 .prowrap{background:#7b5596;}
+    .nav0 .pro{background:#49047a;}
+    .nav1 .prowrap{background:#83a2cc;}
+    .nav1 .pro{background:#13478f;}
+    .nav2 .prowrap{background:#e18e40;}
+    .nav2 .pro{background:#b94e00;}
+    .nav3 .prowrap{background:#47acab;}
+    .nav3 .pro{background:#00605f;}
+    .nav4 .prowrap{background:#c86c8c;}
+    .nav4 .pro{background:#a41a4a;}
+    .nav5 .prowrap{background:#9089d6;}
+    .nav5 .pro{background:#4a419e;}
+
+  </style>
+</head>
+<body>
+<div class='main'>
+  <div id='imgwrap'>
+    <img src='img/banner_00.jpg'>
+    <img src='img/banner_01.jpg'>
+    <img src='img/banner_02.jpg'>
+    <img src='img/banner_03.jpg'>
+    <img src='img/banner_04.jpg'>
+    <img src='img/banner_05.jpg'>
+  </div>
+  <div class='navswrap'>
+    <div class='nav nav0' data-index='0'>
+        <div class='navpic'></div>
+        <div class='prowrap'>
+          <div class='pro'></div>
+        </div>
+    </div>
+    
+    <div class='nav nav1' data-index='1'>
+        <div class='navpic'></div>
+        <div class='prowrap'>
+          <div class='pro'></div>
+        </div>
+    </div>
+    
+    <div class='nav nav2' data-index='2'>
+        <div class='navpic'></div>
+        <div class='prowrap'>
+          <div class='pro'></div>
+        </div>
+    </div>
+    
+    <div class='nav nav3' data-index='3'>
+        <div class='navpic'></div>
+        <div class='prowrap'>
+          <div class='pro'></div>
+        </div>
+    </div>
+    
+    <div class='nav nav4' data-index='4'>
+        <div class='navpic'></div>
+        <div class='prowrap'>
+          <div class='pro'></div>
+        </div>
+    </div>
+    
+    <div class='nav nav5' data-index='5'>
+        <div class='navpic'></div>
+        <div class='prowrap'>
+          <div class='pro'></div>
+        </div>
+    </div>
+  </div>
+</div>
+<script>
+window.onload=function(){
+var picnum=6;
+var picwidth=1224;
+var picinterval=20;
+var picduration=500;
+var prointerval=20;
+var produration=5000;
+var index=0;
+var imgwrap=document.getElementById('imgwrap');
+var pros=document.getElementsByClassName('pro');
+var navs=document.getElementsByClassName('nav');
+//moveTo(imgwrap,-600,500,20);
+progress(pros[index],produration,prointerval);
+for(var i=0;i<navs.length;i++){
+  navs[i].onclick=function(){
+    index=this.dataset.index;
+    moveTo(imgwrap,-index*picwidth,picduration,picinterval);
+  }
+}
+
+//进度条函数
+function progress(elem,duration,interval){
+  var width=picwidth/picnum;
+  var cover=0;
+  var stepLength=width/(duration/interval);
+  var tempindex=index;
+  var step=function(){
+    if(tempindex!==index){clearInterval(intervalId);elem.style.width='0px';}//点击切换是，index可能会改变，改变后与tempindex不一致，取消原进度条函数
+    if(cover+stepLength<width){
+      elem.style.width=parseFloat(getStyle(elem,'width'))+stepLength+'px';//这里之所以用parseFloat是因为步长太小一次不到1，parseInt之后还是零不会再增长了
+      cover+=stepLength;
+    }else{
+      elem.style.width='0px';
+      clearInterval(intervalId);
+      index++;
+      index=index%picnum;
+      moveTo(imgwrap,-index*picwidth,picduration,picinterval);//进度条执行完后执行图片切换函数
+    }
+  
+  }
+  var intervalId=setInterval(step,interval);
+
+}
+
+//图片移动函数
+function moveTo(elem,to,duration,interval){
+  var currPos=parseInt(getStyle(elem,'left'));
+  var dis=Math.abs(to-currPos);
+  var symbol=(to-currPos)/dis;
+  var stepLength=dis/(duration/interval);
+  var cover=0;
+  var step=function(){
+    if(cover+stepLength<dis){
+      elem.style.left=parseFloat(getStyle(elem,'left'))+stepLength*symbol+'px';
+      cover+=stepLength;
+    }else{
+      elem.style.left=to+'px';
+      clearInterval(intervalId);
+      progress(pros[index],produration,prointerval);//图片切换函数执行完后执行进度条函数
+    }  
+  }
+  var intervalId=setInterval(step,interval);
+
+}
+
+
+//获得元素的样式
+function getStyle(elem,cssname){
+  if(window.getComputedStyle){
+    return window.getComputedStyle(elem)[cssname];
+  }else{
+    return elem.currentStyle[cssname];
+  }
+}
+
+}
+</script>
+</body>
+</html>

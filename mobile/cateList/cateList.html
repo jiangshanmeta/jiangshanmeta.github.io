@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>cateList 纯CSS实现</title>
+		<style>
+			*{margin:0;padding:0;box-sizing:border-box;}
+			.cateList{
+				position:relative;
+				width:100%;
+				list-style:none;
+				padding-left:0;/* 这里之所以加上一个padding-left：0是因为要清除浏览器的默认ul的padding，虽然一开始有*清除了，但是实际项目reset或者nomalrize处理的可能没有清除*/
+
+			}
+			.cateList .cateItem{
+				width:45%;
+				
+			}
+			.cateList input[type='radio']{
+				position:fixed;
+				top:-100px;
+				left:-100px;
+			}
+			.cateList .cateTitle{
+				display:block;
+				position:relative;
+				padding:15px 0 15px 15px;
+				margin:0;
+			}
+			.cateList input[type='radio']:checked ~ .cateTitle{
+				color:#03a9f4;
+				border-left:3px solid #03a9f4;
+				border-bottom:1px solid #d9d9d9;				
+			}
+			.cateList .cateItem:not(:first-child)  input[type='radio']:checked ~  .cateTitle{
+				border-top:1px solid #d9d9d9;
+			}
+			.cateList input[type='radio']:checked ~ .cateTitle:after{
+				content:'';
+				position:absolute;
+				height:100%;
+				background:#fff;
+				right:-1px;
+				width:1px;
+				top:0;
+				z-index:1;	
+			}
+			.cateList input[type='radio']~.cateCont{
+				display:none;
+			}
+			.cateList input[type='radio']:checked ~ .cateCont{
+				position:absolute;
+				display:block;
+				top:0;
+				right:0;
+				width:55%;
+				min-height:100%;
+				overflow-y:auto;
+				padding-left:0;	
+				border-left:1px solid #d9d9d9;	
+					
+			}
+			.cateList .list-item{
+				display:block;
+				margin-left:16px;
+				color:#333;
+				padding:15px 0;
+				border-bottom:1px solid #d9d9d9;				
+			}
+		</style>
+	</head>
+	<body>
+		<ul class="cateList">
+			<li class="cateItem">
+				<input type="radio" name="cateSelect" id="cateSelect1" checked>
+				<label for="cateSelect1" class="cateTitle">香水</label>
+				<ul class="cateCont">
+					<li class="list-item">摆件香水</li>
+					<li class="list-item">风口香水/膏</li>
+					<li class="list-item">香膏</li>
+					<li class="list-item">摆件香水</li>
+					<li class="list-item">风口香水/膏</li>
+					<li class="list-item">香膏</li>
+				</ul>
+			</li>
+			<li class="cateItem">
+				<input type="radio" name="cateSelect" id="cateSelect2">
+				<label for="cateSelect2" class="cateTitle">饰品/用品</label>
+				<ul class="cateCont">
+					<li class="list-item">摆/挂件</li>
+					<li class="list-item">钥匙扣/包</li>
+					<li class="list-item">抱/头枕</li>
+					<li class="list-item">安全带扣</li>
+					<li class="list-item">纸巾包</li>
+					<li class="list-item">遮阳板卡包</li>
+					<li class="list-item">安全带扣</li>
+					<li class="list-item">纸巾包</li>
+					<li class="list-item">遮阳板卡包</li>	
+					<li class="list-item">遮阳板卡包</li>
+					<li class="list-item">安全带扣</li>
+					<li class="list-item">纸巾包</li>
+					<li class="list-item">遮阳板卡包</li>
+					<li class="list-item">手机支架</li>
+					<li class="list-item">充电器</li>
+					<li class="list-item">手机支架</li>
+					<li class="list-item">充电器</li>
+
+				</ul>
+			</li>
+			<li class="cateItem">
+				<input type="radio" name="cateSelect" id="cateSelect3">
+				<label for="cateSelect3" class="cateTitle">生活用品</label>
+				<ul class="cateCont">
+					<li class="list-item">手机支架</li>
+					<li class="list-item">充电器</li>
+					<li class="list-item">手机支架</li>
+					<li class="list-item">充电器</li>
+				</ul>
+			</li>
+			<li class="cateItem">
+				<input type="radio" name="cateSelect" id="cateSelect4">
+				<label for="cateSelect4" class="cateTitle">座垫</label>
+				<ul class="cateCont">
+					<li class="list-item">3D四季座垫</li>
+					<li class="list-item">冬季座垫</li>
+					<li class="list-item">夏季座垫</li>
+				</ul>
+			</li>
+			<li class="cateItem">
+				<input type="radio" name="cateSelect" id="cateSelect5">
+				<label for="cateSelect5" class="cateTitle">方向盘套</label>
+				<ul class="cateCont">
+					<li class="list-item">通用方向盘套</li>
+					<li class="list-item">手缝方向盘套</li>
+				</ul>
+			</li>
+			<li class="cateItem">
+				<input type="radio" name="cateSelect" id="cateSelect6">
+				<label for="cateSelect6" class="cateTitle">电子产品</label>
+				<ul class="cateCont">
+					<li class="list-item">撮相机</li>
+					<li class="list-item">耳机/音响</li>
+				</ul>
+			</li>
+			<li class="cateItem">
+				<input type="radio" name="cateSelect" id="cateSelect7">
+				<label for="cateSelect7" class="cateTitle">座垫</label>
+				<ul class="cateCont">
+					<li class="list-item">3D四季座垫</li>
+					<li class="list-item">冬季座垫</li>
+					<li class="list-item">夏季座垫</li>
+				</ul>
+			</li>
+			<li class="cateItem">
+				<input type="radio" name="cateSelect" id="cateSelect8">
+				<label for="cateSelect8" class="cateTitle">方向盘套</label>
+				<ul class="cateCont">
+					<li class="list-item">通用方向盘套</li>
+					<li class="list-item">手缝方向盘套</li>
+				</ul>
+			</li>
+			<li class="cateItem">
+				<input type="radio" name="cateSelect" id="cateSelect9">
+				<label for="cateSelect9" class="cateTitle">电子产品</label>
+				<ul class="cateCont">
+					<li class="list-item">撮相机</li>
+					<li class="list-item">耳机/音响</li>
+				</ul>
+			</li>	
+		</ul>
+		<!-- 
+			其实这种使用CSS实现的效果和慕课网上讲的CSS实现全屏切换效果思路是类似的，都是使用input的checked伪类加上兄弟选择器进行控制，这个checked相当于用js加上的active之类的类
+		 -->
+	</body>
+</html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="observer.js"></script>
+	</head>
+	<body>
+		<script>
+			var a = function(data){
+				console.log(data)
+			}
+			var b = function(data){
+				console.log('b',data);
+			}
+			Observer.register('click',a);
+			Observer.register('click',b);
+			Observer.publish("click",{pp:'sss'})
+			Observer.remove("click",a);
+			Observer.publish("click",{z:'ssssee'})
+
+		</script>
+	</body>
+</html>

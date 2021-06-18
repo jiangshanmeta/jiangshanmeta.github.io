@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>用渐变实现花边</title>
+		<style>
+			*{
+				margin:0;
+				padding:0;
+				box-sizing:border-box;
+			}
+
+			.lace-box{
+				width:360px;
+				height:200px;
+				margin:50px auto;
+				border-radius:10px;
+				box-shadow:0 0 15px  rgba(0,0,0,0.3);
+			}
+			.bg-danger{
+				background-color:#ED6D45;
+			}
+			.bg-primary{
+				background-color:#37ABE3;
+			}
+			.bg-warning{
+				background-color:#F6E65E;
+			}
+			.bottom-lace{
+				background-image:radial-gradient(#fff 40%,transparent 0);
+				background-repeat:repeat-x;
+				background-size:40px 40px;
+				background-position:bottom -20px left 0px;
+			}
+
+			.top-lace{
+				background-image:radial-gradient(#fff 40%,transparent 0);
+				background-repeat:repeat-x;
+				background-size:40px 40px;
+				background-position:top -20px left 0px;				
+			}
+
+			.left-lace{
+				background-image:radial-gradient(#fff 40%,transparent 0);
+				background-repeat:repeat-y;
+				background-size:40px 40px;
+				background-position:left -20px top 0px;						
+			}
+
+			.surrounding-lace{
+				background-image:radial-gradient(#fff 40%,transparent 0),radial-gradient(#fff 40%,transparent 0),radial-gradient(#fff 40%,transparent 0),radial-gradient(#fff 40%,transparent 0);
+				background-repeat:repeat-x,repeat-x,repeat-y,repeat-y;
+				background-size:40px 40px;
+				background-position:top -20px left 0px,bottom -20px left 0px,left -20px top 0px,right -20px top 0px;
+
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="lace-box bg-danger bottom-lace"></div>
+
+		<div class="lace-box bg-primary top-lace"></div>
+
+		<div class="lace-box bg-warning left-lace"></div>
+
+		<div class="lace-box bg-danger surrounding-lace"></div>
+	</body>
+</html>

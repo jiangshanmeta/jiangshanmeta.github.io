@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="photowall.css">
+	<title>photowall</title>
+	<style>
+		.box{
+			margin-top:30px;
+			margin-bottom:30px;
+		}
+		.text-primary {
+		  color: #2196f3;
+		}
+		.text-center{
+		  text-align:center;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="box">
+		<div class="text-primary text-center">八边形 transform实现</div>
+		<div class="octagon center-block" style="width:256px;height:256px;">
+			<img src="2.jpg">
+		</div>
+	</div>
+	<div class="box">
+		<div class="text-primary text-center">八边形 clip-path实现</div>
+		<img src="2.jpg" class="octagon-clip center-block">
+	</div>		
+
+	<div class="box" >
+		<div class="text-primary text-center">菱形 transform实现(需要放大) </div>
+		<div class="diamond center-block" style="width:256px;height:256px;margin-top:50px;margin-bottom:50px;" >
+			<img src="2.jpg">
+		</div>
+	</div>
+	<div class="box">
+		<div class="text-primary text-center">菱形 clip-path实现 有hover过渡效果哦~</div>
+		<img src="2.jpg" class="diamond-clip center-block">
+	</div>	
+
+	<div class="box">
+		<div class="text-primary text-center">圆形/椭圆形 border-radius实现 有hover过渡效果哦~</div>
+		<img src="2.jpg" class="circle center-block">
+	</div>	
+
+	<div class="box">
+		<div class="text-primary text-center">六边形 clip-path实现 有hover过渡效果哦~</div>
+		<img src="2.jpg" class="hexagon-clip center-block">
+	</div>	
+
+</body>
+</html>

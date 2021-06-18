@@ -1,0 +1,86 @@
+*{
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+}
+.center-block{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}
+.octagon{
+	-wekbit-transform:rotate(45deg);
+	-moz-transform:rotate(45deg);
+	-o-transform:rotate(45deg);
+	-ms-transform:rotate(45deg);
+	transform:rotate(45deg);
+	overflow:hidden;
+}
+.octagon img{
+	-wekbit-transform:rotate(-45deg);
+	-moz-transform:rotate(-45deg);
+	-o-transform:rotate(-45deg);
+	-ms-transform:rotate(-45deg);
+	transform:rotate(-45deg);	
+}
+.octagon-clip{
+	-webkit-clip-path:polygon(29% 0,71% 0,100% 29%,100% 71%,71% 100%,29% 100%,0 71%,0 29%);
+	-moz-clip-path:polygon(29% 0,71% 0,100% 29%,100% 71%,71% 100%,29% 100%,0 71%,0 29%);
+	-o-clip-path:polygon(29% 0,71% 0,100% 29%,100% 71%,71% 100%,29% 100%,0 71%,0 29%);
+	-ms-clip-path:polygon(29% 0,71% 0,100% 29%,100% 71%,71% 100%,29% 100%,0 71%,0 29%);
+	clip-path:polygon(29% 0,71% 0,100% 29%,100% 71%,71% 100%,29% 100%,0 71%,0 29%);
+}
+.diamond{
+	-wekbit-transform:rotate(45deg);
+	-moz-transform:rotate(45deg);
+	-o-transform:rotate(45deg);
+	-ms-transform:rotate(45deg);
+	transform:rotate(45deg);
+	overflow:hidden;	
+}
+.diamond img{
+	-wekbit-transform:rotate(-45deg) scale(1.42);
+	-moz-transform:rotate(-45deg) scale(1.42);
+	-o-transform:rotate(-45deg) scale(1.42);
+	-ms-transform:rotate(-45deg) scale(1.42);
+	transform:rotate(-45deg) scale(1.42);	
+}
+.diamond-clip{
+	transition:all 1s ease ;
+	-webkit-clip-path:polygon(50% 0, 100% 50%, 50% 100%,0 50%);
+	-moz-clip-path:polygon(50% 0, 100% 50%, 50% 100%,0 50%);
+	-o-clip-path:polygon(50% 0, 100% 50%, 50% 100%,0 50%);
+	-ms-clip-path:polygon(50% 0, 100% 50%, 50% 100%,0 50%);
+	clip-path:polygon(50% 0, 100% 50%, 50% 100%,0 50%);
+}
+.diamond-clip:hover{
+	-webkit-clip-path:polygon(0 0, 100% 0, 100% 100%,0 100%);
+	-moz-clip-path:polygon(0 0, 100% 0, 100% 100%,0 100%);
+	-ms-clip-path:polygon(0 0, 100% 0, 100% 100%,0 100%);
+	-o-clip-path:polygon(0 0, 100% 0, 100% 100%,0 100%);
+	clip-path:polygon(0 0, 100% 0, 100% 100%,0 100%);
+}
+.circle{
+	transition:all 1s ease ;
+	border-radius:50%;
+}
+.circle:hover{
+	border-radius:0;
+}
+.hexagon-clip{
+	transition:all 1s ease;
+	/*这里不是严格的正六边形，是因为视觉上相同距离垂直距离显得更长*/
+	-webkit-clip-path:polygon(25% 5%, 75% 5%, 100% 50%,75% 95%,25% 95%,0 50%);
+	-moz-clip-path:polygon(25% 5%, 75% 5%, 100% 50%,75% 95%,25% 95%,0 50%);
+	-o-clip-path:polygon(25% 5%, 75% 5%, 100% 50%,75% 95%,25% 95%,0 50%);
+	-ms-clip-path:polygon(25% 5%, 75% 5%, 100% 50%,75% 95%,25% 95%,0 50%);
+	clip-path:polygon(25% 5%, 75% 5%, 100% 50%,75% 95%,25% 95%,0 50%);
+}
+.hexagon-clip:hover{
+	/*这里不是严格的正六边形，是因为视觉上相同距离垂直距离显得更长*/
+	-webkit-clip-path:polygon(50% 5%, 100% 27.5%, 100% 72.5%,50% 95%,0 72.5%,0 27.5%);
+/*	-moz-clip-path:polygon(25% 5%, 75% 5%, 100% 50%,75% 95%,25% 95%,0 50%);
+	-o-clip-path:polygon(25% 5%, 75% 5%, 100% 50%,75% 95%,25% 95%,0 50%);
+	-ms-clip-path:polygon(25% 5%, 75% 5%, 100% 50%,75% 95%,25% 95%,0 50%);
+	clip-path:polygon(25% 5%, 75% 5%, 100% 50%,75% 95%,25% 95%,0 50%);*/
+}

@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>canvas watch</title>
+  <style>
+    *{margin:0;padding:0;}
+	#canvas{margin:0 auto;display:block;}
+  </style>
+</head>
+<body>
+  <canvas id='canvas' width='500' height='500'></canvas>
+  <script>
+    (function(){
+	  var canvas=document.getElementById('canvas');
+	  var context=canvas.getContext('2d');
+	  var time;
+	  var width=canvas.width;
+	  var height=canvas.height;
+	  setInterval(function(){
+	    draw();
+	    
+	  },1000)
+	  function draw(){
+	    //清屏
+		context.clearRect(0,0,width,height);
+		
+		//画外围的圆
+		context.beginPath();
+		context.lineWidth=6;
+		context.arc(width/2,height/2,0.4*width,0,2*Math.PI,false);
+		context.stroke();
+		
+		//画刻度
+		for(var i=0;i<60;i++){
+		  context.save();
+		  context.beginPath();
+		  context.translate(width/2,height/2);
+          context.rotate(6*i*Math.PI/180);
+		  context.moveTo(0,-0.4*width);
+		  if(i%5==0){
+		    context.lineWidth=6;
+			context.lineTo(0,-0.35*width);
+		  }else{
+		    context.lineWidth=3;
+			context.lineTo(0,-0.38*width);
+		  }
+		  context.stroke();
+		  context.restore();
+		}
+		
+		//画表针
+		time=new Date();
+		var hour=time.getHours();
+		hour=hour>12?hour-12:hour;
+		var min=time.getMinutes();
+		var sec=time.getSeconds();
+		drawBand(width/2,height/2,0.13*width,8,30*hour);
+		drawBand(width/2,height/2,0.2*width,4,6*min);
+		drawBand(width/2,height/2,0.3*width,2,6*sec);
+		
+	  }
+	  function drawBand(x,y,length,linewidth,rot){
+	    context.save();
+	    context.beginPath();
+		context.translate(x,y);
+		context.rotate(rot*Math.PI/180);
+		context.moveTo(0,0);
+		context.lineTo(0,-length);
+		context.lineWidth=linewidth;
+		context.lineCap='round';
+		context.stroke();
+	    context.restore();
+	  }
+	  
+	})()
+  
+  
+  </script>
+</body>
+</html>
